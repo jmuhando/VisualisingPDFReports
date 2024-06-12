@@ -1,0 +1,177 @@
+@CHARSET "UTF-8";
+#body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .map {
+            height:93%;
+            width: 50%;
+            position:absolute;
+            margin-top: 5px;
+            margin-left: 5px;
+
+        }
+.center  {
+  margin-top: 5px;
+  z-index: 1000;
+  font: 25px Arial, Helvetica, sans-serif;
+  width: fit-content;
+  margin-left: 20%;
+  background: #fff;
+/*  background-clip: padding-box;*/
+/*  box-shadow: 0 0 15px rgba(0,0,0,0.2);*/
+  border-radius: 5px;
+  padding: 6px 10px 6px 6px;
+}
+
+  #sidebar {
+    float: right;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 49%;
+    height: 93%;
+    }
+
+  #sidebar_item {
+    background: #3498db;
+    }
+
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            background: #ebfffe;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+    .legend {
+        line-height: 20px;
+        color: #555;
+    }
+    .legend i {
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+    }
+
+.sub1, .sub2 { display: none; }
+
+:checked ~ .sub1, :checked ~ .sub2 {
+    display: block;
+    margin-left: 40px;
+}
+
+#A,#B,#C,#D,#E,#F, .checkmark:after {
+    top: 18px;
+    left: 18px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: red;
+}
+
+
+        
+/*        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            background: #ebfffe;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+        .legend {
+            line-height: 20px;
+            color: #555;
+        }
+        .legend i {
+            width: 20px;
+            height: 20px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+        .refreshButton {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            z-index: 400;
+            opacity: 0.8;
+            cursor: pointer;
+        }*/
+
+
+.leaflet-popup-content-wrapper{
+    width: 540px;
+    height: 530px;
+}
+
+
+/*IMAGE OVERLAY*/
+        .popup-overlay{
+          /*Hides pop-up when there is no "active" class*/
+          visibility:hidden;
+          position:absolute;
+          background:#ffffff;
+          top: 5%;
+          border:3px solid #666666;
+          width:50%;
+          height:90%; 
+          left: 25%;
+          z-index:10;
+        }
+        .popup-overlay.active{
+          /*displays pop-up when "active" class is present*/
+          visibility:visible;
+          text-align:center;
+        }
+
+        .popup-content {
+          /*Hides pop-up content when there is no "active" class */
+         visibility:hidden;
+        }
+
+        .popup-content.active {
+          /*Shows pop-up content when "active" class is present */
+          visibility:visible;
+        }
+
+        button{
+          display:inline-block;
+          vertical-align:middle;
+          border-radius:30px;
+          margin:.20rem;
+          font-size: 1rem;
+          color:#666666;
+          background:   #ffffff;
+          border:1px solid #666666;  
+        }
+
+        button:hover{
+          border:1px solid #666666;
+          background:#666666;
+          color:#ffffff;
+        }
+        #pics {
+          width: 500px;
+          height: 500px;
+          background: url(../img/loading.gif) 50% no-repeat;
+          border: 1px solid black;
+          border-radius: 5px;
+        }
+
