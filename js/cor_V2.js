@@ -1,23 +1,33 @@
-
 //MAP
 var map = L.map('map',{
   center :[-0.005091, 37.497650],
   zoom : 7,
   minZoom:7,
   maxZoom:9,
-  zoomControl: true,
-  locateControl: false,
-  pegmanControl: false,
-  fullscreenControl: false,
-  searchControl: false,
-  printControl: false,
-  disableDefaultUI: true,
-  loadingControl: false,
 });
 
-map.addControl(L.control.zoom({position:'topleft'}));
+//map.addControl(L.control.zoom({position:'topleft'}));
 
 var osm_baselayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+
+//LAYER STYLES
+var style_boundary = {
+    "color": "#0d0d0d",
+    "weight": 1.5,
+    "opacity": 1,
+    "fillColor": "#ADADAD",
+    "fillOpacity": 0.3
+};
+
+
+
+var counties_layer = L.geoJson(counties,{style:style_boundary}).addTo(map);
+
+
+
+
+
 
 
 // var map = L.map('map').setView([-0.0841,34.7737], 12 );
