@@ -24,6 +24,9 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
+    <!-- Underscore -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js" integrity="sha512-2V49R8ndaagCOnwmj8QnbT1Gz/rie17UouD9Re5WxbzRVUGoftCu5IuqqtAM9+UC3fwfHCSJR1hkzNQh/2wdtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 
 <body id="body">
@@ -33,14 +36,19 @@
     </div>
 
     <div id="sidebar" class="d-grid gap-3">
-        <div id="sidebar_item" class="p-2 bg-body-tertiary border">Grid item 1</div>
-        <div id="sidebar_item" class="p-2 bg-body-tertiary border">Grid item 2</div>
-        <div id="sidebar_item" class="p-2 bg-body-tertiary border">Grid item 3</div>
-        <div id="sidebar_item" class="p-2 bg-body-tertiary border">Grid item 4</div>
-        <div id="sidebar_item" class="p-2 bg-body-tertiary border">Grid item 5</div>
+        <div id="sidebar_item" class="p-2 bg-body-tertiary border">County budget allocation, expenditure and absorption rate </div>
+        <div id="sidebar_item" class="p-2 bg-body-tertiary border">Expenditure by Economic Classification </div>
+        <div id="sidebar_item" class="p-2 bg-body-tertiary border">Local revenue collection </div>
+        <div id="sidebar_item" class="p-2 bg-body-tertiary border">Pending Bills</div>
+        <!-- <div id="sidebar_item" class="p-2 bg-body-tertiary border">Grid item 5</div> -->
     </div>
 
     <div id="map"class="map"></div>
+
+<script type="text/javascript" src="./js/CBAEAR.js"/></script><!--js data -->
+<script type="text/javascript" src="./js/EEC.js"/></script><!--js data -->
+<script type="text/javascript" src="./js/LRC.js"/></script><!--js data -->
+<script type="text/javascript" src="./js/PB.js"/></script><!--js data -->
 
 <script type="text/javascript" src="./js/counties.js"/></script><!--js counties layer code-->
 <script type="text/javascript" src="./js/cor_V2.js"/></script><!--js source source code-->

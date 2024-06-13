@@ -1,12 +1,10 @@
 //MAP
 var map = L.map('map',{
-  center :[-0.005091, 37.497650],
+  center :[-0.0000000002, 37.997650],
   zoom : 7,
   minZoom:7,
-  maxZoom:9,
+  maxZoom:10,
 });
-
-//map.addControl(L.control.zoom({position:'topleft'}));
 
 var osm_baselayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
@@ -22,8 +20,56 @@ var style_boundary = {
 
 
 
-var counties_layer = L.geoJson(counties,{style:style_boundary}).addTo(map);
+function zoomToFeature(e) {
+  info1.update(e.target.feature.properties);
+  console.log(e.target.feature.properties.NAME);
+  map.fitBounds(e.target.getBounds());
+    // layer.setStyle({
+    //     weight: 4,
+    //     color: '#5C005C',
+    //     dashArray: '2',
+    //     fillOpacity: 1
+    // });
+}
+function onEachFeature(feature, layer) {
+  //console.log(feature.properties.NAME);
+  layer.bindPopup(feature.properties.NAME);
+  layer.on({
+    click: zoomToFeature,
+  });
+}
 
+
+
+
+
+var counties_layer = L.geoJson(counties,{style:style_boundary,onEachFeature:onEachFeature}).addTo(map);
+
+
+
+//INFO WINDOW 2
+var info1 = L.control({position: 'topright'});
+
+info1.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info1.update = function (props) {
+    this._div.innerHTML = '<h5>Click on a County</h5>' +  (props ?
+        '<h6><b>'+props.District+'</b></h6>' 
+        : '');
+};
+
+info1.addTo(map);
+
+
+
+
+
+//https://stackoverflow.com/questions/44106015/combining-geojson-and-json-for-leaftlet
 
 
 
