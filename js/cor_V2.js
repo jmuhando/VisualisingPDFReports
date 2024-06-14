@@ -114,7 +114,7 @@ function onEachFeature(feature, layer) {
   for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
         if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == feature.properties.NAME) {
             value = CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate[key];
-            console.log(key, value);
+            //console.log(key, value);
             //var layer = e.target;
             layer.setStyle({
               fillColor: getColor(value),
@@ -206,12 +206,12 @@ var ourCustomControl = L.Control.extend({
     var container = L.DomUtil.create('div', ' leaflet-bar leaflet-control leaflet-control-layers');
     container.setAttribute('aria-haspopup','true');
     //container.innerHTML = '<a class="leaflet-control-layers-toggle" href="#" title="Layers" role="button"></a>'
-    container.innerHTML = '<h6 class = "text-center p-1"><b>Explore data by Financial Years</b></h6>'+
+    container.innerHTML = '<h6 class = "text-center p-1"><b>Explore by Financial Years</b></h6>'+
     // '<h6 class = "text-center p-1"><b>Explore data by Financial Years</b></h6>'+
     // '<section class="leaflet-control-layers-list">'+
     //   '<div class="leaflet-control-layers-base">'+
         '<div class="accordion-container">'+
-          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2015 - 2016</button></h6>'+
+          '<div class="ac" id="2015_2016" ><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2015 - 2016</button></h6>'+
             '<div class="ac-panel">'+
               '<input type="radio" name="level0" value="o_status" id="A"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
@@ -223,7 +223,7 @@ var ourCustomControl = L.Control.extend({
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
-          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2016 - 2017</button></h6>'+
+          '<div class="ac" id="2016_2017"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2016 - 2017</button></h6>'+
             '<div class="ac-panel">'+
               '<input type="radio" name="level0" value="o_status" id="A"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
@@ -235,7 +235,7 @@ var ourCustomControl = L.Control.extend({
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
-          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2017 - 2018</button></h6>'+
+          '<div class="ac" id="2017_2018"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2017 - 2018</button></h6>'+
             '<div class="ac-panel">'+
               '<input type="radio" name="level0" value="o_status" id="A"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
@@ -247,7 +247,7 @@ var ourCustomControl = L.Control.extend({
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
-          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2018 - 2019</button></h6>'+
+          '<div class="ac" id="2018_2019"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2018 - 2019</button></h6>'+
             '<div class="ac-panel">'+
               '<input type="radio" name="level0" value="o_status" id="A"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
@@ -259,7 +259,7 @@ var ourCustomControl = L.Control.extend({
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
-          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2019 - 2020</button></h6>'+
+          '<div class="ac" id="2019_2020"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2019 - 2020</button></h6>'+
             '<div class="ac-panel">'+
               '<input type="radio" name="level0" value="o_status" id="A"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
@@ -271,7 +271,7 @@ var ourCustomControl = L.Control.extend({
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
-          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2020 - 2021</button></h6>'+
+          '<div class="ac" id="2020_2021"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2020 - 2021</button></h6>'+
             '<div class="ac-panel">'+
               '<input type="radio" name="level0" value="o_status" id="A"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
@@ -283,7 +283,7 @@ var ourCustomControl = L.Control.extend({
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
-          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2021 - 2022</button></h6>'+
+          '<div class="ac" id="2021_2022"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2021 - 2022</button></h6>'+
             '<div class="ac-panel">'+
               '<input type="radio" name="level0" value="o_status" id="A"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
@@ -295,7 +295,7 @@ var ourCustomControl = L.Control.extend({
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
-          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2022 - 2023</button></h6>'+
+          '<div class="ac" id="2022_2023"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2022 - 2023</button></h6>'+
             '<div class="ac-panel">'+
               '<input type="radio" name="level0" value="o_status" id="A"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
@@ -347,7 +347,11 @@ map.addControl(new ourCustomControl());
 //https://stackoverflow.com/questions/44106015/combining-geojson-and-json-for-leaftlet
 
 
-new Accordion('.accordion-container');
+new Accordion('.accordion-container',{
+    onOpen: function(currentElement) {
+    console.log(currentElement.id);
+  }
+});
 
 
 
