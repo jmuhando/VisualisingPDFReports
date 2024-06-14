@@ -19,10 +19,89 @@ var style_boundary = {
 };
 
 
+//COLOUR FUNCTIONS
+// function getColor(d) {
+//     return d > 100 ? '#800026' :
+//            d >= 100  ? '#BD0026' :
+//            d > 80  ? '#E31A1C' :
+//            d > 60  ? '#FC4E2A' :
+//            d > 40   ? '#FEB24C' :
+//            d > 20   ? '#FED976' :
+//                       '#FFEDA0';
+// }
+
+function colours(low, high, x) {
+  return chroma.scale([low,high]).mode('lch').colors(x)
+}
+
+
+function getColor(d) {
+    return d > 100 ? colours('#ffebc5','#581d00', 6)[5] :
+           d > 90  ? colours('#ffebc5','#581d00', 6)[4] :
+           d > 80  ? colours('#ffebc5','#581d00', 6)[3] :
+           d > 70  ? colours('#ffebc5','#581d00', 6)[2] :
+           d > 60  ? colours('#ffebc5','#581d00', 6)[1] :
+           d > 50  ? colours('#ffebc5','#581d00', 6)[0] :
+                      '#ffebc9';
+}
+
+
+
+function styleEachFeature(feature) {
+  for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
+        if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == e.target.feature.properties.NAME) {
+            value = CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate[key];
+            console.log(key, value);
+            var layer = e.target;
+            layer.setStyle({
+              fillColor: getColor(value),
+              weight: 2,
+              color: '#666',
+              dashArray: '3',
+              fillOpacity: 0.7
+            });
+
+        }
+  }
+
+
+
+  if (layer.feature.properties.NAME === Object.keys(CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate)) {
+    return {
+        fillColor: getColor(Object.values(CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate)),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+  }
+    
+}
+
+
 
 function zoomToFeature(e) {
   info1.update(e.target.feature.properties);
   console.log(e.target.feature.properties.NAME);
+
+  // for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
+  //       if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == e.target.feature.properties.NAME) {
+  //           value = CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate[key];
+  //           console.log(key, value);
+  //           var layer = e.target;
+  //           layer.setStyle({
+  //             fillColor: getColor(value),
+  //             weight: 2,
+  //             color: '#666',
+  //             dashArray: '3',
+  //             fillOpacity: 0.7
+  //           });
+
+  //       }
+  // }
+
+
   map.fitBounds(e.target.getBounds());
     // layer.setStyle({
     //     weight: 4,
@@ -31,8 +110,27 @@ function zoomToFeature(e) {
     //     fillOpacity: 1
     // });
 }
+
 function onEachFeature(feature, layer) {
   //console.log(feature.properties.NAME);
+
+  for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
+        if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == feature.properties.NAME) {
+            value = CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate[key];
+            console.log(key, value);
+            //var layer = e.target;
+            layer.setStyle({
+              fillColor: getColor(value),
+              weight: 2,
+              color: '#fff',
+              dashArray: '5',
+              fillOpacity: 0.9
+            });
+
+        }
+  }
+
+
   layer.bindPopup(feature.properties.NAME);
   layer.on({
     click: zoomToFeature,
@@ -43,12 +141,12 @@ function onEachFeature(feature, layer) {
 
 
 
-var counties_layer = L.geoJson(counties,{style:style_boundary,onEachFeature:onEachFeature}).addTo(map);
+var counties_layer = L.geoJson(counties,{onEachFeature:onEachFeature}).addTo(map);
 
 
 
 //INFO WINDOW 2
-var info1 = L.control({position: 'topright'});
+var info1 = L.control({position: 'topleft'});
 
 info1.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
@@ -58,12 +156,33 @@ info1.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info1.update = function (props) {
-    this._div.innerHTML = '<h5>Click on a County</h5>' +  (props ?
+    this._div.innerHTML = '<h5>Click a County</h5>' +  (props ?
         '<h6><b>'+props.District+'</b></h6>' 
         : '');
 };
 
 info1.addTo(map);
+
+
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 50, 60, 70, 80, 90, 100],
+        labels = [];
+    div.innerHTML = '<h6>Absorption Rate</h6>'
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+legend.addTo(map);
 
 
 
