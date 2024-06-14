@@ -1,8 +1,8 @@
 //MAP
 var map = L.map('map',{
-  center :[-0.0000000002, 37.997650],
-  zoom : 7,
-  minZoom:7,
+  center :[-0.0000000002, 39.997650],
+  zoom : 6,
+  minZoom:6,
   maxZoom:10,
 });
 
@@ -166,7 +166,7 @@ legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 50, 60, 70, 80, 90, 100],
         labels = [];
-    div.innerHTML = '<h6>Absorption Rate</h6>'
+    div.innerHTML = '<h6>Absorption Rate % </h6>'
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
@@ -203,11 +203,113 @@ var ourCustomControl = L.Control.extend({
   },
  
   onAdd: function (map) {
-    var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
-    container.innerHTML = '<h6 class = "text-center p-1"><b>Financial Years</b></h6> <div class="accordion-container">'+
-    '<div class="ac"><h2 class="ac-header"><button type="button" class="ac-trigger">2015 - 2016</button></h2>'+
-    '<div class="ac-panel">&nbsp;<input type="radio" name="level0" value="o_status" id="A"/></div>'+
-    '</div>'
+    var container = L.DomUtil.create('div', ' leaflet-bar leaflet-control leaflet-control-layers');
+    container.setAttribute('aria-haspopup','true');
+    //container.innerHTML = '<a class="leaflet-control-layers-toggle" href="#" title="Layers" role="button"></a>'
+    container.innerHTML = '<h6 class = "text-center p-1"><b>Explore data by Financial Years</b></h6>'+
+    // '<h6 class = "text-center p-1"><b>Explore data by Financial Years</b></h6>'+
+    // '<section class="leaflet-control-layers-list">'+
+    //   '<div class="leaflet-control-layers-base">'+
+        '<div class="accordion-container">'+
+          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2015 - 2016</button></h6>'+
+            '<div class="ac-panel">'+
+              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+              '<span class="ms-2">Overall Absorption Rate</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<span class="ms-2">Total Expenditure</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<span class="ms-2">Collections Vs Target</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<span class="ms-2">Pending Bills</span>'+
+            '</div>'+
+          '</div>'+
+          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2016 - 2017</button></h6>'+
+            '<div class="ac-panel">'+
+              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+              '<span class="ms-2">Overall Absorption Rate</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<span class="ms-2">Total Expenditure</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<span class="ms-2">Collections Vs Target</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<span class="ms-2">Pending Bills</span>'+
+            '</div>'+
+          '</div>'+
+          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2017 - 2018</button></h6>'+
+            '<div class="ac-panel">'+
+              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+              '<span class="ms-2">Overall Absorption Rate</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<span class="ms-2">Total Expenditure</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<span class="ms-2">Collections Vs Target</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<span class="ms-2">Pending Bills</span>'+
+            '</div>'+
+          '</div>'+
+          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2018 - 2019</button></h6>'+
+            '<div class="ac-panel">'+
+              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+              '<span class="ms-2">Overall Absorption Rate</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<span class="ms-2">Total Expenditure</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<span class="ms-2">Collections Vs Target</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<span class="ms-2">Pending Bills</span>'+
+            '</div>'+
+          '</div>'+
+          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2019 - 2020</button></h6>'+
+            '<div class="ac-panel">'+
+              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+              '<span class="ms-2">Overall Absorption Rate</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<span class="ms-2">Total Expenditure</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<span class="ms-2">Collections Vs Target</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<span class="ms-2">Pending Bills</span>'+
+            '</div>'+
+          '</div>'+
+          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2020 - 2021</button></h6>'+
+            '<div class="ac-panel">'+
+              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+              '<span class="ms-2">Overall Absorption Rate</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<span class="ms-2">Total Expenditure</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<span class="ms-2">Collections Vs Target</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<span class="ms-2">Pending Bills</span>'+
+            '</div>'+
+          '</div>'+
+          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2021 - 2022</button></h6>'+
+            '<div class="ac-panel">'+
+              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+              '<span class="ms-2">Overall Absorption Rate</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<span class="ms-2">Total Expenditure</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<span class="ms-2">Collections Vs Target</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<span class="ms-2">Pending Bills</span>'+
+            '</div>'+
+          '</div>'+
+          '<div class="ac "><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2022 - 2023</button></h6>'+
+            '<div class="ac-panel">'+
+              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+              '<span class="ms-2">Overall Absorption Rate</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<span class="ms-2">Total Expenditure</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<span class="ms-2">Collections Vs Target</span></br>'+
+              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<span class="ms-2">Pending Bills</span>'+
+            '</div>'+
+          '</div>'+
+        '</div>'
+    //   '</div>'+
+    // '</section>'
 
  
     container.style.backgroundColor = 'white';
