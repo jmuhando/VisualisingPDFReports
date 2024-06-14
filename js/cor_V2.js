@@ -47,37 +47,35 @@ function getColor(d) {
 
 
 
-function styleEachFeature(feature) {
-  for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
-        if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == e.target.feature.properties.NAME) {
-            value = CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate[key];
-            console.log(key, value);
-            var layer = e.target;
-            layer.setStyle({
-              fillColor: getColor(value),
-              weight: 2,
-              color: '#666',
-              dashArray: '3',
-              fillOpacity: 0.7
-            });
+// function styleEachFeature(feature) {
+//   for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
+//         if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == e.target.feature.properties.NAME) {
+//             value = CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate[key];
+//             console.log(key, value);
+//             var layer = e.target;
+//             layer.setStyle({
+//               fillColor: getColor(value),
+//               weight: 2,
+//               color: '#666',
+//               dashArray: '3',
+//               fillOpacity: 0.7
+//             });
 
-        }
-  }
+//         }
+//   }
 
-
-
-  if (layer.feature.properties.NAME === Object.keys(CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate)) {
-    return {
-        fillColor: getColor(Object.values(CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate)),
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.7
-    };
-  }
+//   if (layer.feature.properties.NAME === Object.keys(CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate)) {
+//     return {
+//         fillColor: getColor(Object.values(CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate)),
+//         weight: 2,
+//         opacity: 1,
+//         color: 'white',
+//         dashArray: '3',
+//         fillOpacity: 0.7
+//     };
+//   }
     
-}
+// }
 
 
 
@@ -113,7 +111,6 @@ function zoomToFeature(e) {
 
 function onEachFeature(feature, layer) {
   //console.log(feature.properties.NAME);
-
   for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
         if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == feature.properties.NAME) {
             value = CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate[key];
@@ -129,8 +126,6 @@ function onEachFeature(feature, layer) {
 
         }
   }
-
-
   layer.bindPopup(feature.properties.NAME);
   layer.on({
     click: zoomToFeature,
@@ -156,9 +151,9 @@ info1.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info1.update = function (props) {
-    this._div.innerHTML = '<h5>Click a County</h5>' +  (props ?
+    this._div.innerHTML =   (props ?
         '<h6><b>'+props.District+'</b></h6>' 
-        : '');
+        :'<h6><b>Click a County</b></h6>');
 };
 
 info1.addTo(map);
@@ -188,10 +183,69 @@ legend.addTo(map);
 
 
 
+
+//LAYER CONTROL
+// L.Control.Layers.WithSomethingExtra = L.Control.Layers.extend({
+//   _initLayout: function() {
+//     L.Control.Layers.prototype._initLayout.call(this);
+//     L.DomUtil.create('div', 'leaflet-control-layers-separator', this._form);
+//     var myThing = L.DomUtil.create('div', 'info legend', this._form);
+//     myThing.innerHTML = 'My custom thing inside the layers control!! <h6>Absorption Rate</h6>';
+//   }
+// });
+
+
+var ourCustomControl = L.Control.extend({
+ 
+  options: {
+    position: 'topright' 
+    //control position - allowed: 'topleft', 'topright', 'bottomleft', 'bottomright'
+  },
+ 
+  onAdd: function (map) {
+    var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+    container.innerHTML = '<h6 class = "text-center p-1"><b>Financial Years</b></h6> <div class="accordion-container">'+
+    '<div class="ac"><h2 class="ac-header"><button type="button" class="ac-trigger">2015 - 2016</button></h2>'+
+    '<div class="ac-panel">&nbsp;<input type="radio" name="level0" value="o_status" id="A"/></div>'+
+    '</div>'
+
+ 
+    container.style.backgroundColor = 'white';
+    // container.style.width = '30px';
+    // container.style.height = '30px';
+ 
+    container.onclick = function(){
+      console.log('buttonClicked');
+    }
+
+    return container;
+  },
+ 
+});
+
+
+
+// onAdd: function (map) {
+//     var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+ 
+//     container.style.backgroundColor = 'white';
+//     container.style.width = '30px';
+//     container.style.height = '30px';
+ 
+//     container.onclick = function(){
+//       console.log('buttonClicked');
+//     }
+//     return container;
+//   }
+
+map.addControl(new ourCustomControl());
+
+
+
 //https://stackoverflow.com/questions/44106015/combining-geojson-and-json-for-leaftlet
 
 
-
+new Accordion('.accordion-container');
 
 
 
