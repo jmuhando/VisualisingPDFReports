@@ -212,98 +212,98 @@ var ourCustomControl = L.Control.extend({
     //   '<div class="leaflet-control-layers-base">'+
         '<div class="accordion-container">'+
           '<div class="ac" id="2015_2016" ><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2015 - 2016</button></h6>'+
-            '<div class="ac-panel">'+
-              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+            '<div class="ac-panel ms-2">'+
+              '<input type="radio" name="level0" value="2015_2016_OAR" id="2015_2016_OAR"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<input type="radio" name="level0" value="2015_2016_TE" id="2015_2016_TE"/>'+
               '<span class="ms-2">Total Expenditure</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<input type="radio" name="level0" value="2015_2016_CVT" id="2015_2016_CVT"/>'+
               '<span class="ms-2">Collections Vs Target</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<input type="radio" name="level0" value="2015_2016_PB" id="2015_2016_PB"/>'+
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
           '<div class="ac" id="2016_2017"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2016 - 2017</button></h6>'+
-            '<div class="ac-panel">'+
-              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+            '<div class="ac-panel ms-2">'+
+              '<input type="radio" name="level0" value="2016_2017_OAR" id="2016_2017_OAR"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<input type="radio" name="level0" value="2016_2017_TE" id="2016_2017_TE"/>'+
               '<span class="ms-2">Total Expenditure</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<input type="radio" name="level0" value="2016_2017_CVT" id="2016_2017_CVT"/>'+
               '<span class="ms-2">Collections Vs Target</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<input type="radio" name="level0" value="2016_2017_PB" id="2016_2017_PB"/>'+
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
           '<div class="ac" id="2017_2018"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2017 - 2018</button></h6>'+
-            '<div class="ac-panel">'+
-              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+            '<div class="ac-panel ms-2">'+
+              '<input type="radio" name="level0" value="2017_2018_OAR" id="2017_2018_OAR"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<input type="radio" name="level0" value="2017_2018_TE" id="2017_2018_TE"/>'+
               '<span class="ms-2">Total Expenditure</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<input type="radio" name="level0" value="2017_2018_CVT" id="2017_2018_CVT"/>'+
               '<span class="ms-2">Collections Vs Target</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<input type="radio" name="level0" value="2017_2018_PB" id="2017_2018_PB"/>'+
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
           '<div class="ac" id="2018_2019"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2018 - 2019</button></h6>'+
-            '<div class="ac-panel">'+
-              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+            '<div class="ac-panel ms-2">'+
+              '<input type="radio" name="level0" value="2018_2019_OAR" id="2018_2019_OAR"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<input type="radio" name="level0" value="2018_2019_TE" id="2018_2019_TE"/>'+
               '<span class="ms-2">Total Expenditure</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<input type="radio" name="level0" value="2018_2019_CVT" id="2018_2019_CVT"/>'+
               '<span class="ms-2">Collections Vs Target</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<input type="radio" name="level0" value="2018_2019_PB" id="2018_2019_PB"/>'+
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
           '<div class="ac" id="2019_2020"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2019 - 2020</button></h6>'+
-            '<div class="ac-panel">'+
-              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+            '<div class="ac-panel ms-2">'+
+              '<input type="radio" name="level0" value="2019_2020_OAR" id="2019_2020_OAR"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<input type="radio" name="level0" value="2019_2020_TE" id="2019_2020_TE"/>'+
               '<span class="ms-2">Total Expenditure</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<input type="radio" name="level0" value="2019_2020_CVT" id="2019_2020_CVT"/>'+
               '<span class="ms-2">Collections Vs Target</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<input type="radio" name="level0" value="2019_2020_PB" id="2019_2020_PB"/>'+
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
           '<div class="ac" id="2020_2021"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2020 - 2021</button></h6>'+
-            '<div class="ac-panel">'+
-              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+            '<div class="ac-panel ms-2">'+
+              '<input type="radio" name="level0" value="2020_2021_OAR" id="2020_2021_OAR"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<input type="radio" name="level0" value="2020_2021_TE" id="2020_2021_TE"/>'+
               '<span class="ms-2">Total Expenditure</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<input type="radio" name="level0" value="2020_2021_CVT" id="2020_2021_CVT"/>'+
               '<span class="ms-2">Collections Vs Target</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<input type="radio" name="level0" value="2020_2021_PB" id="2020_2021_PB"/>'+
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
           '<div class="ac" id="2021_2022"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2021 - 2022</button></h6>'+
-            '<div class="ac-panel">'+
-              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+            '<div class="ac-panel ms-2">'+
+              '<input type="radio" name="level0" value="2021_2022_OAR" id="2021_2022_OAR"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<input type="radio" name="level0" value="2021_2022_TE" id="2021_2022_TE"/>'+
               '<span class="ms-2">Total Expenditure</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<input type="radio" name="level0" value="2021_2022_CVT" id="2021_2022_CVT"/>'+
               '<span class="ms-2">Collections Vs Target</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<input type="radio" name="level0" value="2021_2022_PB" id="2021_2022_PB"/>'+
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
           '<div class="ac" id="2022_2023"><h6 class="ac-header"><button type="button" class="ac-trigger text-center">2022 - 2023</button></h6>'+
-            '<div class="ac-panel">'+
-              '<input type="radio" name="level0" value="o_status" id="A"/>'+
+            '<div class="ac-panel ms-2">'+
+              '<input type="radio" name="level0" value="2022_2023_OAR" id="2022_2023_OAR"/>'+
               '<span class="ms-2">Overall Absorption Rate</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="B"/>'+
+              '<input type="radio" name="level0" value="2022_2023_TE" id="2022_2023_TE"/>'+
               '<span class="ms-2">Total Expenditure</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="C"/>'+
+              '<input type="radio" name="level0" value="2022_2023_CVT" id="2022_2023_CVT"/>'+
               '<span class="ms-2">Collections Vs Target</span></br>'+
-              '<input type="radio" name="level0" value="o_status" id="D"/>'+
+              '<input type="radio" name="level0" value="2022_2023_PB" id="2022_2023_PB"/>'+
               '<span class="ms-2">Pending Bills</span>'+
             '</div>'+
           '</div>'+
@@ -311,7 +311,6 @@ var ourCustomControl = L.Control.extend({
     //   '</div>'+
     // '</section>'
 
- 
     container.style.backgroundColor = 'white';
     // container.style.width = '30px';
     // container.style.height = '30px';
@@ -347,13 +346,38 @@ map.addControl(new ourCustomControl());
 //https://stackoverflow.com/questions/44106015/combining-geojson-and-json-for-leaftlet
 
 
+
+
 new Accordion('.accordion-container',{
     onOpen: function(currentElement) {
-    console.log(currentElement.id);
-  }
+      console.log(currentElement.id);
+
+//FILTER MECHANISM
+$( "input:radio[name='level0']" ).on('click',function(event) {
+  console.log($( 'input[name="level0"]:checked' ).val());
+
+    // if($('input[name="level0"]:checked').prop("checked") == true){
+    //     //filtered.clearLayers();
+    //     var layerClicked = window[event.target.value];
+    //     var test = $( 'input[name="level0"]:checked' ).val();
+    //     console.log(test); 
+    // }
+    // else if($('input[name="level0"]:checked').prop("checked") == false){
+    //     //filtered.clearLayers();
+    //     console.log("Checkbox is unchecked.");
+    // }
+
 });
 
 
+    }
+});
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // var map = L.map('map').setView([-0.0841,34.7737], 12 );
 
