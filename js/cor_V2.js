@@ -66,6 +66,17 @@ function getColorLRC(d) {
 }
 
 
+function getColorPB(d) {
+    return d > 1000000000 ? colours('#7cfc00','#006400', 6)[5] :
+           d > 1000000000 ? colours('#7cfc00','#006400', 6)[4] :
+           d > 750000000  ? colours('#7cfc00','#006400', 6)[3] :
+           d > 500000000  ? colours('#7cfc00','#006400', 6)[2] :
+           d > 250000000  ? colours('#7cfc00','#006400', 6)[1] :
+           d > 100000000  ? colours('#7cfc00','#006400', 6)[0] :
+                      '#ffebc9';
+}
+
+
 // function styleEachFeature(feature) {
 //   for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
 //         if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == e.target.feature.properties.NAME) {
@@ -241,7 +252,28 @@ legendLRC.onAdd = function (map) {
     return div;
 };
 
-legendLRC.addTo(map);
+//legendLRC.addTo(map);
+
+//Pending Bills Legend
+var legendPB = L.control({position: 'bottomright'});
+
+legendPB.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 100000000, 250000000, 500000000, 750000000, 1000000000, 1000000000],
+        labels = [];
+    div.innerHTML = '<h6>Pending Bills in Billions </h6>'
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColorPB(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+legendPB.addTo(map);
 
 
 
@@ -426,7 +458,7 @@ new Accordion('.accordion-container',{
           console.log(path);
           console.log(access(path, CBAEAR));
           counties_layer.eachLayer(function (feature,layer) {
-            console.log(feature.feature.properties.NAME);
+            //console.log(feature.feature.properties.NAME);
             for (let key in access(path, CBAEAR)) {
               if (access(path, CBAEAR).hasOwnProperty(key) && key == feature.feature.properties.NAME) {
                 value = access(path, CBAEAR)[key];
@@ -502,6 +534,26 @@ new Accordion('.accordion-container',{
           var path = clicked.concat(".TotalPendingBills")
           console.log(path);
           console.log(access(path, PB));
+
+          counties_layer.eachLayer(function (feature,layer) {
+            console.log(feature.feature.properties.NAME);
+            for (let key in access(path, PB)) {
+              if (access(path, PB).hasOwnProperty(key) && key == feature.feature.properties.NAME) {
+                value = access(path, PB)[key];
+                      //console.log(key, value);
+                      //var layer = e.target;
+                feature.setStyle({
+                  fillColor: getColorPB(value),
+                  weight: 2,
+                  color: '#fff',
+                  dashArray: '5',
+                  fillOpacity: 0.9
+                });
+              }
+            }
+          });
+
+
         }
       });
     }
