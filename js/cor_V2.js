@@ -45,6 +45,25 @@ function getColor(d) {
                       '#ffebc9';
 }
 
+function getColorEEC(d) {
+    return d > 10000000000 ? colours('#ffffe0','#00429d', 6)[5] :
+           d > 10000000000 ? colours('#ffffe0','#00429d', 6)[4] :
+           d > 5000000000  ? colours('#ffffe0','#00429d', 6)[3] :
+           d > 3000000000  ? colours('#ffffe0','#00429d', 6)[2] :
+           d > 2000000000  ? colours('#ffffe0','#00429d', 6)[1] :
+           d > 1000000000  ? colours('#ffffe0','#00429d', 6)[0] :
+                      '#ffebc9';
+}
+
+function getColorLRC(d) {
+    return d > 100 ? colours('#fff02f','#ea002a', 6)[5] :
+           d > 90 ? colours('#fff02f','#ea002a', 6)[4] :
+           d > 75 ? colours('#fff02f','#ea002a', 6)[3] :
+           d > 50 ? colours('#fff02f','#ea002a', 6)[2] :
+           d > 25 ? colours('#fff02f','#ea002a', 6)[1] :
+           d > 10 ? colours('#fff02f','#ea002a', 6)[0] :
+                      '#ffebc9';
+}
 
 
 // function styleEachFeature(feature) {
@@ -111,21 +130,21 @@ function zoomToFeature(e) {
 
 function onEachFeature(feature, layer) {
   //console.log(feature.properties.NAME);
-  for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
-        if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == feature.properties.NAME) {
-            value = CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate[key];
-            //console.log(key, value);
-            //var layer = e.target;
-            layer.setStyle({
-              fillColor: getColor(value),
-              weight: 2,
-              color: '#fff',
-              dashArray: '5',
-              fillOpacity: 0.9
-            });
+  // for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
+  //       if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == feature.properties.NAME) {
+  //           value = CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate[key];
+  //           //console.log(key, value);
+  //           //var layer = e.target;
+  //           layer.setStyle({
+  //             fillColor: getColor(value),
+  //             weight: 2,
+  //             color: '#fff',
+  //             dashArray: '5',
+  //             fillOpacity: 0.9
+  //           });
 
-        }
-  }
+  //       }
+  // }
 
   layer.bindPopup(feature.properties.NAME);
   layer.on({
@@ -137,7 +156,7 @@ function onEachFeature(feature, layer) {
 
 
 //County Layer
-var counties_layer = L.geoJson(counties,{onEachFeature:onEachFeature}).addTo(map);
+var counties_layer = L.geoJson(counties,{style:style_boundary ,onEachFeature:onEachFeature}).addTo(map);
 //console.log(counties_layer);
 
 //INFO COUNTY WINDOW
@@ -159,6 +178,7 @@ info1.update = function (props) {
 info1.addTo(map);
 
 
+//Absorption Rate Legend
 var legendAR = L.control({position: 'bottomright'});
 
 legendAR.onAdd = function (map) {
@@ -177,9 +197,51 @@ legendAR.onAdd = function (map) {
     return div;
 };
 
-legendAR.addTo(map);
+//legendAR.addTo(map);
 
 
+//Total Expenditure Legend
+var legendTE = L.control({position: 'bottomright'});
+
+legendTE.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 1000000000, 2000000000, 3000000000, 4000000000, 5000000000, 10000000000],
+        labels = [];
+    div.innerHTML = '<h6>Expenditure in Billions </h6>'
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColorEEC(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+//legendTE.addTo(map);
+
+
+//Collection Vs Target Legend
+var legendLRC = L.control({position: 'bottomright'});
+
+legendLRC.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 10, 25, 50, 75, 90, 100],
+        labels = [];
+    div.innerHTML = '<h6>Collection Vs Target % </h6>'
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColorLRC(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+legendLRC.addTo(map);
 
 
 
@@ -363,29 +425,23 @@ new Accordion('.accordion-container',{
           var path = clicked.concat(".OverallAbsorptionRate")
           console.log(path);
           console.log(access(path, CBAEAR));
-
-counties_layer.eachLayer(function (feature,layer) {
-  console.log(feature.feature.properties.NAME);
-
-  for (let key in access(path, CBAEAR)) {
-        if (access(path, CBAEAR).hasOwnProperty(key) && key == feature.feature.properties.NAME) {
-            value = access(path, CBAEAR)[key];
-            //console.log(key, value);
-            //var layer = e.target;
-            feature.setStyle({
-              fillColor: getColor(value),
-              weight: 2,
-              color: '#fff',
-              dashArray: '5',
-              fillOpacity: 0.9
-            });
-
-        }
-  }
-  // if(layer.feature.properties.NAME == 'feature 1') {    
-  //   layer.setStyle({fillColor :'blue'}) 
-  // }
-});
+          counties_layer.eachLayer(function (feature,layer) {
+            console.log(feature.feature.properties.NAME);
+            for (let key in access(path, CBAEAR)) {
+              if (access(path, CBAEAR).hasOwnProperty(key) && key == feature.feature.properties.NAME) {
+                value = access(path, CBAEAR)[key];
+                      //console.log(key, value);
+                      //var layer = e.target;
+                feature.setStyle({
+                  fillColor: getColor(value),
+                  weight: 2,
+                  color: '#fff',
+                  dashArray: '5',
+                  fillOpacity: 0.9
+                });
+              }
+            }
+          });
 
         } 
         else if (clicked.slice(0, -10) === "EEC") {
@@ -393,12 +449,53 @@ counties_layer.eachLayer(function (feature,layer) {
           var path = clicked.concat(".TotalExpenditure")
           console.log(path);
           console.log(access(path, EEC));
+          counties_layer.eachLayer(function (feature,layer) {
+            console.log(feature.feature.properties.NAME);
+            for (let key in access(path, EEC)) {
+              if (access(path, EEC).hasOwnProperty(key) && key == feature.feature.properties.NAME) {
+                value = access(path, EEC)[key];
+                      //console.log(key, value);
+                      //var layer = e.target;
+                feature.setStyle({
+                  fillColor: getColorEEC(value),
+                  weight: 2,
+                  color: '#fff',
+                  dashArray: '5',
+                  fillOpacity: 0.9
+                });
+              }
+            }
+          });
+
+
+
         }
         else if (clicked.slice(0, -10) === "LRC") {
           console.log("LRC files", clicked);
           var path = clicked.concat(".Collection_vs_target")
           console.log(path);
           console.log(access(path, LRC));
+
+          counties_layer.eachLayer(function (feature,layer) {
+            console.log(feature.feature.properties.NAME);
+            for (let key in access(path, LRC)) {
+              if (access(path, LRC).hasOwnProperty(key) && key == feature.feature.properties.NAME) {
+                value = access(path, LRC)[key];
+                      //console.log(key, value);
+                      //var layer = e.target;
+                feature.setStyle({
+                  fillColor: getColorLRC(value),
+                  weight: 2,
+                  color: '#fff',
+                  dashArray: '5',
+                  fillOpacity: 0.9
+                });
+              }
+            }
+          });
+
+
+
         }
         else if (clicked.slice(0, -10) === "PB") {
           console.log("PB files", clicked);
@@ -415,6 +512,13 @@ let access = (path, object) => {
   return path.split('.').reduce((o, i) => o[i], object)
 }
 
+
+//underscore
+//get max and min values
+// _.omit(temp1, "total")// remove totals
+
+// _.chain(_.omit(temp2, "total")).max().value()
+// _.chain(_.omit(temp1, "total")).min().value()
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
