@@ -126,6 +126,7 @@ function onEachFeature(feature, layer) {
 
         }
   }
+
   layer.bindPopup(feature.properties.NAME);
   layer.on({
     click: zoomToFeature,
@@ -135,12 +136,11 @@ function onEachFeature(feature, layer) {
 
 
 
-
+//County Layer
 var counties_layer = L.geoJson(counties,{onEachFeature:onEachFeature}).addTo(map);
+//console.log(counties_layer);
 
-
-
-//INFO WINDOW 2
+//INFO COUNTY WINDOW
 var info1 = L.control({position: 'topleft'});
 
 info1.onAdd = function (map) {
@@ -159,9 +159,9 @@ info1.update = function (props) {
 info1.addTo(map);
 
 
-var legend = L.control({position: 'bottomright'});
+var legendAR = L.control({position: 'bottomright'});
 
-legend.onAdd = function (map) {
+legendAR.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 50, 60, 70, 80, 90, 100],
@@ -177,7 +177,7 @@ legend.onAdd = function (map) {
     return div;
 };
 
-legend.addTo(map);
+legendAR.addTo(map);
 
 
 
@@ -317,6 +317,7 @@ var ourCustomControl = L.Control.extend({
  
     container.onclick = function(){
       console.log('buttonClicked');
+      //console.log(counties_layer);
     }
 
     return container;
@@ -343,85 +344,69 @@ map.addControl(new ourCustomControl());
 
 
 
-//https://stackoverflow.com/questions/44106015/combining-geojson-and-json-for-leaftlet
-
 
 
 
 new Accordion('.accordion-container',{
-    onOpen: function(currentElement) {
+    onOpen: function(currentElement, map) {
       console.log(currentElement.id);
-
+      console.log(counties_layer);
 //FILTER MECHANISM
-$( "input:radio[name='level0']" ).on('click',function(event) {
-  //console.log($( 'input[name="level0"]:checked' ).val());
-  //console.log($( 'input[name="level0"]:checked' ).attr('id'));
-  var clicked = $( 'input[name="level0"]:checked' ).val();
-  let result = clicked.slice(0, -10);
-  //console.log(result);
+      $( "input:radio[name='level0']" ).on('click',function(event) {
+        //console.log($( 'input[name="level0"]:checked' ).val());
+        //console.log($( 'input[name="level0"]:checked' ).attr('id'));
+        var clicked = $( 'input[name="level0"]:checked' ).val();
+        let result = clicked.slice(0, -10);
+        //console.log(result);
+        if (clicked.slice(0, -10) === "CBAEAR") {
+          console.log("CBAEAR files", clicked);
+          var path = clicked.concat(".OverallAbsorptionRate")
+          console.log(path);
+          console.log(access(path, CBAEAR));
 
-if (clicked.slice(0, -10) === "CBAEAR") {
-  console.log("CBAEAR files", clicked);
-  var path = clicked.concat(".OverallAbsorptionRate")
-  console.log(path);
-  console.log(access(path, CBAEAR));
+counties_layer.eachLayer(function (feature,layer) {
+  console.log(feature.feature.properties.NAME);
 
-} 
-else if (clicked.slice(0, -10) === "EEC") {
-  console.log("EEC files", clicked);
-  var path = clicked.concat(".TotalExpenditure")
-  console.log(path);
-  console.log(access(path, EEC));
+  for (let key in access(path, CBAEAR)) {
+        if (access(path, CBAEAR).hasOwnProperty(key) && key == feature.feature.properties.NAME) {
+            value = access(path, CBAEAR)[key];
+            //console.log(key, value);
+            //var layer = e.target;
+            feature.setStyle({
+              fillColor: getColor(value),
+              weight: 2,
+              color: '#fff',
+              dashArray: '5',
+              fillOpacity: 0.9
+            });
 
-}
-else if (clicked.slice(0, -10) === "LRC") {
-  console.log("LRC files", clicked);
-  var path = clicked.concat(".Collection_vs_target")
-  console.log(path);
-  console.log(access(path, LRC));
-
-}
-else if (clicked.slice(0, -10) === "PB") {
-  console.log("PB files", clicked);
-  var path = clicked.concat(".TotalPendingBills")
-  console.log(path);
-  console.log(access(path, PB));
-
-}
-// //how to filter the data files
-// let access = (path, object) => {
-//   return path.split('.').reduce((o, i) => o[i], object)
-// }
-
-// const obj = {
-//   prop1: {
-//     prop2: {
-//       prop3: {
-//         value: 'foo'
-//       }
-//     }
-//   }
-// }
-
-// const str = 'prop1.prop2.prop3'
-
-// console.log(access(str, obj)) // {"value": "foo"}
-
-
-    // if($('input[name="level0"]:checked').prop("checked") == true){
-    //     //filtered.clearLayers();
-    //     var layerClicked = window[event.target.value];
-    //     var test = $( 'input[name="level0"]:checked' ).val();
-    //     console.log(test); 
-    // }
-    // else if($('input[name="level0"]:checked').prop("checked") == false){
-    //     //filtered.clearLayers();
-    //     console.log("Checkbox is unchecked.");
-    // }
-
+        }
+  }
+  // if(layer.feature.properties.NAME == 'feature 1') {    
+  //   layer.setStyle({fillColor :'blue'}) 
+  // }
 });
 
-
+        } 
+        else if (clicked.slice(0, -10) === "EEC") {
+          console.log("EEC files", clicked);
+          var path = clicked.concat(".TotalExpenditure")
+          console.log(path);
+          console.log(access(path, EEC));
+        }
+        else if (clicked.slice(0, -10) === "LRC") {
+          console.log("LRC files", clicked);
+          var path = clicked.concat(".Collection_vs_target")
+          console.log(path);
+          console.log(access(path, LRC));
+        }
+        else if (clicked.slice(0, -10) === "PB") {
+          console.log("PB files", clicked);
+          var path = clicked.concat(".TotalPendingBills")
+          console.log(path);
+          console.log(access(path, PB));
+        }
+      });
     }
 });
 
@@ -429,6 +414,114 @@ else if (clicked.slice(0, -10) === "PB") {
 let access = (path, object) => {
   return path.split('.').reduce((o, i) => o[i], object)
 }
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//https://stackoverflow.com/questions/44106015/combining-geojson-and-json-for-leaftlet
+
+// new Accordion('.accordion-container',{
+//     onOpen: function(currentElement) {
+//       console.log(currentElement.id);
+// //FILTER MECHANISM
+//       $( "input:radio[name='level0']" ).on('click',function(event) {
+//         //console.log($( 'input[name="level0"]:checked' ).val());
+//         //console.log($( 'input[name="level0"]:checked' ).attr('id'));
+//         var clicked = $( 'input[name="level0"]:checked' ).val();
+//         let result = clicked.slice(0, -10);
+//         //console.log(result);
+
+//       if (clicked.slice(0, -10) === "CBAEAR") {
+//         console.log("CBAEAR files", clicked);
+//         var path = clicked.concat(".OverallAbsorptionRate")
+//         console.log(path);
+//         console.log(access(path, CBAEAR));
+
+//       } 
+//       else if (clicked.slice(0, -10) === "EEC") {
+//         console.log("EEC files", clicked);
+//         var path = clicked.concat(".TotalExpenditure")
+//         console.log(path);
+//         console.log(access(path, EEC));
+
+//       }
+//       else if (clicked.slice(0, -10) === "LRC") {
+//         console.log("LRC files", clicked);
+//         var path = clicked.concat(".Collection_vs_target")
+//         console.log(path);
+//         console.log(access(path, LRC));
+
+//       }
+//       else if (clicked.slice(0, -10) === "PB") {
+//         console.log("PB files", clicked);
+//         var path = clicked.concat(".TotalPendingBills")
+//         console.log(path);
+//         console.log(access(path, PB));
+
+//       }
+// // //how to filter the data files
+// // let access = (path, object) => {
+// //   return path.split('.').reduce((o, i) => o[i], object)
+// // }
+
+// // const obj = {
+// //   prop1: {
+// //     prop2: {
+// //       prop3: {
+// //         value: 'foo'
+// //       }
+// //     }
+// //   }
+// // }
+
+// // const str = 'prop1.prop2.prop3'
+
+// // console.log(access(str, obj)) // {"value": "foo"}
+
+
+//     // if($('input[name="level0"]:checked').prop("checked") == true){
+//     //     //filtered.clearLayers();
+//     //     var layerClicked = window[event.target.value];
+//     //     var test = $( 'input[name="level0"]:checked' ).val();
+//     //     console.log(test); 
+//     // }
+//     // else if($('input[name="level0"]:checked').prop("checked") == false){
+//     //     //filtered.clearLayers();
+//     //     console.log("Checkbox is unchecked.");
+//     // }
+
+// });
+
+
+//     }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
