@@ -1,3 +1,8 @@
+// var container = L.DomUtil.get('map');
+// if (container != null) {
+//     container._leaflet_id = null;
+// }
+
 //MAP
 var map = L.map('map',{
   center :[-0.0000000002, 39.997650],
@@ -189,6 +194,60 @@ info1.update = function (props) {
 info1.addTo(map);
 
 
+//LEGENDS
+L.Legend = L.Control.extend({
+    'onAdd': function (map) {
+
+        // add reference to mapinstance
+        map.legend = this;
+
+        // create container
+        var container = L.DomUtil.create('div', 'legend-control-container');
+
+        // if content provided
+        if (this.options.content) {
+
+            // set content
+            container.innerHTML = this.options.content;
+
+        }
+        return container;
+    },
+    'onRemove': function (map) {
+
+      // remove reference from mapinstance
+      delete map.legend;
+
+    },
+
+    // new method for setting innerHTML
+    'setContent': function(str) {
+        this.getContainer().innerHTML = str;
+    }
+});
+
+//test legend
+var test_legend = new L.Legend({position: 'bottomright'});
+test_legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 50, 60, 70, 80, 90, 100],
+        labels = [];
+    div.innerHTML = '<h6>Test Absorption Rate % </h6>'
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+test_legend.addTo(map);
+
+
+
 //Absorption Rate Legend
 var legendAR = L.control({position: 'bottomright'});
 
@@ -273,9 +332,9 @@ legendPB.onAdd = function (map) {
     return div;
 };
 
-legendPB.addTo(map);
+//legendPB.addTo(map);
 
-
+//currentLegend = legendAR;
 
 
 //LAYER CONTROL
@@ -437,14 +496,20 @@ var ourCustomControl = L.Control.extend({
 map.addControl(new ourCustomControl());
 
 
+// map.removeControl(currentLegend );
+currentLegend = test_legend;
+// legendTE.addTo(map); 
 
-
-
+//legendTE.addTo(map);
+//legendAR.addTo(map);
 
 new Accordion('.accordion-container',{
-    onOpen: function(currentElement, map) {
+    onOpen: function(currentElement) {
       console.log(currentElement.id);
       console.log(counties_layer);
+      console.log(legendAR);
+      console.log(map);
+
 //FILTER MECHANISM
       $( "input:radio[name='level0']" ).on('click',function(event) {
         //console.log($( 'input[name="level0"]:checked' ).val());
@@ -457,6 +522,7 @@ new Accordion('.accordion-container',{
           var path = clicked.concat(".OverallAbsorptionRate")
           console.log(path);
           console.log(access(path, CBAEAR));
+
           counties_layer.eachLayer(function (feature,layer) {
             //console.log(feature.feature.properties.NAME);
             for (let key in access(path, CBAEAR)) {
@@ -474,6 +540,11 @@ new Accordion('.accordion-container',{
               }
             }
           });
+          map.removeControl(currentLegend);
+          currentLegend = legendAR;
+          legendAR.addTo(map); 
+
+
 
         } 
         else if (clicked.slice(0, -10) === "EEC") {
@@ -482,7 +553,7 @@ new Accordion('.accordion-container',{
           console.log(path);
           console.log(access(path, EEC));
           counties_layer.eachLayer(function (feature,layer) {
-            console.log(feature.feature.properties.NAME);
+            //console.log(feature.feature.properties.NAME);
             for (let key in access(path, EEC)) {
               if (access(path, EEC).hasOwnProperty(key) && key == feature.feature.properties.NAME) {
                 value = access(path, EEC)[key];
@@ -499,6 +570,9 @@ new Accordion('.accordion-container',{
             }
           });
 
+          map.removeControl(currentLegend);
+          currentLegend = legendTE;
+          legendTE.addTo(map); 
 
 
         }
@@ -509,7 +583,7 @@ new Accordion('.accordion-container',{
           console.log(access(path, LRC));
 
           counties_layer.eachLayer(function (feature,layer) {
-            console.log(feature.feature.properties.NAME);
+            //console.log(feature.feature.properties.NAME);
             for (let key in access(path, LRC)) {
               if (access(path, LRC).hasOwnProperty(key) && key == feature.feature.properties.NAME) {
                 value = access(path, LRC)[key];
@@ -526,6 +600,9 @@ new Accordion('.accordion-container',{
             }
           });
 
+          map.removeControl(currentLegend);
+          currentLegend = legendLRC;
+          legendLRC.addTo(map); 
 
 
         }
@@ -536,7 +613,7 @@ new Accordion('.accordion-container',{
           console.log(access(path, PB));
 
           counties_layer.eachLayer(function (feature,layer) {
-            console.log(feature.feature.properties.NAME);
+            //console.log(feature.feature.properties.NAME);
             for (let key in access(path, PB)) {
               if (access(path, PB).hasOwnProperty(key) && key == feature.feature.properties.NAME) {
                 value = access(path, PB)[key];
@@ -553,6 +630,9 @@ new Accordion('.accordion-container',{
             }
           });
 
+          map.removeControl(currentLegend);
+          currentLegend = legendPB;
+          legendPB.addTo(map); 
 
         }
       });
