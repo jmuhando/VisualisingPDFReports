@@ -117,6 +117,7 @@ function getColorPB(d) {
 function zoomToFeature(e) {
   info1.update(e.target.feature.properties);
   console.log(e.target.feature.properties.NAME);
+  Data_Extractor(data,e.target.feature.properties.NAME);
 
   // for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
   //       if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == e.target.feature.properties.NAME) {
@@ -670,31 +671,30 @@ var data = {'CBAEAR':CBAEAR,'EEC':EEC,'LRC':LRC,'PB':PB};
 function Data_Extractor(data,county_name) {
     var each_data = {};
     if (_.isEmpty(each_data)) {
-        console.log("each_data is empty");
+        //console.log("each_data is empty");
         _.each(data, function (value,key) {
             if (key=== "CBAEAR") {
-                console.log("Dataset is",key);
-                console.log("Test works");
-                console.log(value);
-each_data[key]={};
-for (var [key1, value1] of Object.entries(value)) {
-    var year = key1;
-    console.log("Year of dataset is", year);
-    console.log(value1);
-    each_data[key][year]={};
-    for (var [key2, value2] of Object.entries(value1)) {
-        //console.log(key2);
-        var data_point = key2;
-        console.log("Data point is", data_point);
-        console.log(value2);
-        //console.log("County name is",String(_.keys(_.pick(value2, 'total'))));
-        console.log(parseFloat(_.values(_.pick(value2, 'total'))));
-        
-        //each_data[key][data_point][year]= {};
-        each_data[key][year][data_point]= parseFloat(_.values(_.pick(value2, 'total')));;
-    }
-
-}
+                //console.log("Dataset is",key);
+                //console.log("Test works");
+                //console.log(value);
+                each_data[key]={};
+                for (var [key1, value1] of Object.entries(value)) {
+                    var year = key1;
+                    //console.log("Year of dataset is", year);
+                    //console.log(value1);
+                    each_data[key][year]={};
+                    for (var [key2, value2] of Object.entries(value1)) {
+                        //console.log(key2);
+                        var data_point = key2;
+                        //console.log("Data point is", data_point);
+                        //console.log(value2);
+                        //console.log("County name is",String(_.keys(_.pick(value2, 'total'))));
+                        //console.log(parseFloat(_.values(_.pick(value2, 'total'))));
+                        
+                        //each_data[key][data_point][year]= {};
+                        each_data[key][year][data_point]= parseFloat(_.values(_.pick(value2, county_name)));;
+                    }
+                }
 
 //                 _.each(value, function (value1,key1) {
 //                     //console.log(key1);
@@ -729,7 +729,73 @@ for (var [key1, value1] of Object.entries(value)) {
 //                     // });
 //                 });
             } 
-            // else if () {} else if () {} else if () {}
+            else if (key=== "EEC") {
+                //console.log("Dataset is",key);
+                //console.log("Test works");
+                //console.log(value);
+                each_data[key]={};
+                for (var [key1, value1] of Object.entries(value)) {
+                    var year = key1;
+                    //console.log("Year of dataset is", year);
+                    //console.log(value1);
+                    each_data[key][year]={};
+                    for (var [key2, value2] of Object.entries(value1)) {
+                        //console.log(key2);
+                        var data_point = key2;
+                        //console.log("Data point is", data_point);
+                        //console.log(value2);
+                        //console.log("County name is",String(_.keys(_.pick(value2, 'total'))));
+                        //console.log(parseFloat(_.values(_.pick(value2, 'total'))));
+                        //each_data[key][data_point][year]= {};
+                        each_data[key][year][data_point]= parseFloat(_.values(_.pick(value2, county_name)));;
+                    }
+                }
+            } 
+            else if (key=== "LRC") {
+                //console.log("Dataset is",key);
+                //console.log("Test works");
+                //console.log(value);
+                each_data[key]={};
+                for (var [key1, value1] of Object.entries(value)) {
+                    var year = key1;
+                    //console.log("Year of dataset is", year);
+                    //console.log(value1);
+                    each_data[key][year]={};
+                    for (var [key2, value2] of Object.entries(value1)) {
+                        //console.log(key2);
+                        var data_point = key2;
+                        //console.log("Data point is", data_point);
+                        //console.log(value2);
+                        //console.log("County name is",String(_.keys(_.pick(value2, 'total'))));
+                        //console.log(parseFloat(_.values(_.pick(value2, 'total'))));
+                        //each_data[key][data_point][year]= {};
+                        each_data[key][year][data_point]= parseFloat(_.values(_.pick(value2, county_name)));;
+                    }
+                }
+            } 
+            else if (key=== "PB") {
+                //console.log("Dataset is",key);
+                //console.log("Test works");
+                //console.log(value);
+                each_data[key]={};
+                for (var [key1, value1] of Object.entries(value)) {
+                    var year = key1;
+                    //console.log("Year of dataset is", year);
+                    //console.log(value1);
+                    each_data[key][year]={};
+                    for (var [key2, value2] of Object.entries(value1)) {
+                        //console.log(key2);
+                        var data_point = key2;
+                        //console.log("Data point is", data_point);
+                        //console.log(value2);
+                        //console.log("County name is",String(_.keys(_.pick(value2, 'total'))));
+                        //console.log(parseFloat(_.values(_.pick(value2, 'total'))));
+                        //each_data[key][data_point][year]= {};
+                        each_data[key][year][data_point]= parseFloat(_.values(_.pick(value2, county_name)));;
+                    }
+                }
+            } 
+            //else if () {} else if () {}
             // _.each(value, function (value1,key1) {
             //     //console.log(key1);
             //     var year = key1;
@@ -763,7 +829,7 @@ for (var [key1, value1] of Object.entries(value)) {
     // body...
 }
 
-Data_Extractor(data);
+Data_Extractor(data,"total");
 
 // _.each(data, function (value,key) {
 //     console.log(key);
