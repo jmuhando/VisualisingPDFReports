@@ -666,19 +666,118 @@ let access = (path, object) => {
 
 //var data = [{'CBAEAR':CBAEAR},{'EEC':EEC},{'LRC':LRC},{'PB':PB}];
 var data = {'CBAEAR':CBAEAR,'EEC':EEC,'LRC':LRC,'PB':PB};
-_.each(data, function (value,key) {
-    console.log(key);
-    console.log(value);
-    _.each(value, function (value,key) {
-        console.log(key);
-        console.log(value);
-        _.each(value, function (value,key) {
-            console.log(key);
-            console.log(value);
-            console.log(_.pick(value, 'baringo'));
+
+function Data_Extractor(data,county_name) {
+    var each_data = {};
+    if (_.isEmpty(each_data)) {
+        console.log("each_data is empty");
+        _.each(data, function (value,key) {
+            if (key=== "CBAEAR") {
+                console.log("Dataset is",key);
+                console.log("Test works");
+                console.log(value);
+each_data[key]={};
+for (var [key1, value1] of Object.entries(value)) {
+    var year = key1;
+    console.log("Year of dataset is", year);
+    console.log(value1);
+    each_data[key][year]={};
+    for (var [key2, value2] of Object.entries(value1)) {
+        //console.log(key2);
+        var data_point = key2;
+        console.log("Data point is", data_point);
+        console.log(value2);
+        //console.log("County name is",String(_.keys(_.pick(value2, 'total'))));
+        console.log(parseFloat(_.values(_.pick(value2, 'total'))));
+        
+        //each_data[key][data_point][year]= {};
+        each_data[key][year][data_point]= parseFloat(_.values(_.pick(value2, 'total')));;
+    }
+
+}
+
+//                 _.each(value, function (value1,key1) {
+//                     //console.log(key1);
+//                     var year = key1;
+//                     console.log("Year of dataset is", year);
+//                     console.log(value1);
+
+// each_data[key]={};
+// for (var [key2, value2] of Object.entries(value1)) {
+//     //console.log(key2);
+//     var data_point = key2;
+//     console.log("Data point is", data_point);
+//     console.log(value2);
+//     //console.log("County name is",String(_.keys(_.pick(value2, 'total'))));
+//     console.log(parseFloat(_.values(_.pick(value2, 'total'))));
+//     each_data[key][data_point]={};
+//     each_data[key][data_point][year]= parseFloat(_.values(_.pick(value2, 'total')));
+
+// }
+
+//                     // _.each(value1, function (value2,key2) {
+//                     //     //console.log(key2);
+//                     //     var data_point = key2;
+//                     //     console.log("Data point is", data_point);
+//                     //     console.log(value2);
+//                     //     // console.log("County name is",String(_.keys(_.pick(value2, 'total'))));
+//                     //     // console.log(parseFloat(_.values(_.pick(value2, 'total'))));
+//                     //     // each_data[year]= parseFloat(_.values(_.pick(value2, 'total')));
+//                     //     each_data[key]={};
+//                     //     each_data[key][data_point]={};
+//                     //     // each_data[key][data_point][year]= parseFloat(_.values(_.pick(value2, 'total')));
+//                     // });
+//                 });
+            } 
+            // else if () {} else if () {} else if () {}
+            // _.each(value, function (value1,key1) {
+            //     //console.log(key1);
+            //     var year = key1;
+            //     console.log("Year of dataset is", year);
+            //     console.log(value1);
+            //     _.each(value1, function (value2,key2) {
+            //         //console.log(key2);
+            //         var data_point = key2;
+            //         console.log("Data point is", data_point);
+            //         console.log(value2);
+            //         console.log("County name is",String(_.keys(_.pick(value2, 'total'))));
+            //         console.log(parseInt(_.values(_.pick(value2, 'total'))));
+            //     });
+            // });
         });
-    });
-});
+    }
+    console.log(each_data);
+    // _.each(data, function (value,key) {
+    //     console.log(key);
+    //     console.log(value);
+    //     _.each(value, function (value,key) {
+    //         console.log(key);
+    //         console.log(value);
+    //         _.each(value, function (value,key) {
+    //             console.log(key);
+    //             console.log(value);
+    //             console.log(_.pick(value, 'total'));
+    //         });
+    //     });
+    // });
+    // body...
+}
+
+Data_Extractor(data);
+
+// _.each(data, function (value,key) {
+//     console.log(key);
+//     console.log(value);
+//     _.each(value, function (value,key) {
+//         console.log(key);
+//         console.log(value);
+//         _.each(value, function (value,key) {
+//             console.log(key);
+//             console.log(value);
+//             console.log(_.pick(value, 'baringo'));
+//         });
+//     });
+// });
 
 //var data = [CBAEAR,EEC,LRC,PB];
 
