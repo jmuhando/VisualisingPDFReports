@@ -644,6 +644,10 @@ let access = (path, object) => {
   return path.split('.').reduce((o, i) => o[i], object)
 }
 
+//graphs
+
+
+
 
 //underscore
 //get max and min values
@@ -652,6 +656,41 @@ let access = (path, object) => {
 // _.chain(_.omit(temp2, "total")).max().value()
 // _.chain(_.omit(temp1, "total")).min().value()
 
+//length of objects
+//Object.keys(CBAEAR).length;
+
+// for (var [key, value] of Object.entries(CBAEAR)) {
+//     console.log(key);
+//     console.log(value);
+// }
+
+//var data = [{'CBAEAR':CBAEAR},{'EEC':EEC},{'LRC':LRC},{'PB':PB}];
+var data = {'CBAEAR':CBAEAR,'EEC':EEC,'LRC':LRC,'PB':PB};
+_.each(data, function (value,key) {
+    console.log(key);
+    console.log(value);
+    _.each(value, function (value,key) {
+        console.log(key);
+        console.log(value);
+        _.each(value, function (value,key) {
+            console.log(key);
+            console.log(value);
+            console.log(_.pick(value, 'baringo'));
+        });
+    });
+});
+
+//var data = [CBAEAR,EEC,LRC,PB];
+
+// data.forEach((element) => {
+//     //console.log(String(_.values(element)));
+//     console.log(String(_.keys(element)));
+//     console.log(Object.values(element));
+//     // for (var [key, value] of Object.entries(Object.values(element))) {
+//     //     console.log(key);
+//     //     console.log(value);
+//     // }
+// });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //https://stackoverflow.com/questions/44106015/combining-geojson-and-json-for-leaftlet
