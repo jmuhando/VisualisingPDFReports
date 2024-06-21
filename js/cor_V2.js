@@ -831,6 +831,31 @@ function Data_Extractor(data,county_name) {
 
 Data_Extractor(data,"total");
 
+
+//CHARTS
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+
 // _.each(data, function (value,key) {
 //     console.log(key);
 //     console.log(value);
