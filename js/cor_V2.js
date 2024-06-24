@@ -812,7 +812,8 @@ function Data_Extractor(data,county_name) {
             // });
         });
     }
-    console.log(each_data);
+    return each_data;
+    //console.log(each_data);
     // _.each(data, function (value,key) {
     //     console.log(key);
     //     console.log(value);
@@ -829,26 +830,110 @@ function Data_Extractor(data,county_name) {
     // body...
 }
 
-Data_Extractor(data,"total");
+var chart_data = Data_Extractor(data,"total");
+
+
 
 
 //CHARTS
+
+var chart_labels = ['2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-2020', '2020-2021', '2021-2022', '2022-2023'];
+
   const ctx = document.getElementById('myChart');
 
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: chart_labels,
       datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
+        label: 'Rec_BudgetEstimates',
+        data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Rec_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2016_2017.Rec_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2017_2018.Rec_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2018_2019.Rec_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2019_2020.Rec_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2020_2021.Rec_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2021_2022.Rec_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2022_2023.Rec_BudgetEstimates
+            ],
+        borderWidth: 1,
+        stack: 'Stack 0',
+      },{
+        label: 'Dev_BudgetEstimates',
+        data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Dev_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2016_2017.Dev_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2017_2018.Dev_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2018_2019.Dev_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2019_2020.Dev_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2020_2021.Dev_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2021_2022.Dev_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2022_2023.Dev_BudgetEstimates
+            ],
+        borderWidth: 1,
+        stack: 'Stack 0',
+      },{
+        label: 'Tot_BudgetEstimates',
+        data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Tot_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2016_2017.Tot_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2017_2018.Tot_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2018_2019.Tot_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2019_2020.Tot_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2020_2021.Tot_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2021_2022.Tot_BudgetEstimates, 
+                chart_data.CBAEAR.CBAEAR_2022_2023.Tot_BudgetEstimates
+            ],
+        borderWidth: 1,
+        stack: 'Stack 3',
+      },{
+        label: 'Rec_Expenditure',
+        data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2016_2017.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2017_2018.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2018_2019.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2019_2020.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2020_2021.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2021_2022.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2022_2023.Rec_Expenditure
+            ],
+        borderWidth: 1,
+        stack: 'Stack 1',
+      },{
+        label: 'Dev_Expenditure',
+        data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2016_2017.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2017_2018.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2018_2019.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2019_2020.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2020_2021.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2021_2022.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2022_2023.Dev_Expenditure
+            ],
+        borderWidth: 1,
+        stack: 'Stack 1',
+      },{
+        label: 'Tot_Expenditure',
+        data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Tot_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2016_2017.Tot_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2017_2018.Tot_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2018_2019.Tot_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2019_2020.Tot_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2020_2021.Tot_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2021_2022.Tot_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2022_2023.Tot_Expenditure
+            ],
+        borderWidth: 1,
+        stack: 'Stack 2',
       }]
     },
     options: {
       scales: {
+        x: {
+          // beginAtZero: true,
+          stacked: true
+        },
         y: {
-          beginAtZero: true
+          // beginAtZero: true,
+          stacked: true
         }
       }
     }
