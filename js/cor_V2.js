@@ -942,7 +942,7 @@ var chart_labels = ['2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-20
         data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Dev_AbsorptionRate, 
                 chart_data.CBAEAR.CBAEAR_2016_2017.Dev_AbsorptionRate, 
                 chart_data.CBAEAR.CBAEAR_2017_2018.Dev_AbsorptionRate, 
-                chart_data.CBAEAR.CBAEAR_2018_2019.Dev_AbsorptionRates, 
+                chart_data.CBAEAR.CBAEAR_2018_2019.Dev_AbsorptionRate, 
                 chart_data.CBAEAR.CBAEAR_2019_2020.Dev_AbsorptionRate, 
                 chart_data.CBAEAR.CBAEAR_2020_2021.Dev_AbsorptionRate, 
                 chart_data.CBAEAR.CBAEAR_2021_2022.Dev_AbsorptionRate, 
@@ -998,6 +998,143 @@ var chart_labels = ['2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-20
           line: {
             borderWidth: 3
           }
+        }
+    }
+  });
+
+//EEC
+//line
+  const lineChart = document.getElementById('steppedChart');
+
+  new Chart(lineChart, {
+    type: 'line',
+    data: {
+      labels: chart_labels,
+      datasets: [{
+        label: 'Personnel Emoluments',
+        data: [ chart_data.EEC.EEC_2015_2016.PersonnelEmoluments, 
+                chart_data.EEC.EEC_2016_2017.PersonnelEmoluments, 
+                chart_data.EEC.EEC_2017_2018.PersonnelEmoluments, 
+                chart_data.EEC.EEC_2018_2019.PersonnelEmoluments, 
+                chart_data.EEC.EEC_2019_2020.PersonnelEmoluments, 
+                chart_data.EEC.EEC_2020_2021.PersonnelEmoluments, 
+                chart_data.EEC.EEC_2021_2022.PersonnelEmoluments, 
+                chart_data.EEC.EEC_2022_2023.PersonnelEmoluments
+            ],
+        stepped: true,
+        //borderColor: chroma('hotpink').brighten(),
+        //backgroundColor: chroma('hotpink').brighten(3),
+        borderWidth: 2,
+
+      },{
+        label: 'Operations Maintenance',
+        data: [ chart_data.EEC.EEC_2015_2016.Operations_Maintenance, 
+                chart_data.EEC.EEC_2016_2017.Operations_Maintenance, 
+                chart_data.EEC.EEC_2017_2018.Operations_Maintenance, 
+                chart_data.EEC.EEC_2018_2019.Operations_Maintenance, 
+                chart_data.EEC.EEC_2019_2020.Operations_Maintenance, 
+                chart_data.EEC.EEC_2020_2021.Operations_Maintenance, 
+                chart_data.EEC.EEC_2021_2022.Operations_Maintenance, 
+                chart_data.EEC.EEC_2022_2023.Operations_Maintenance
+            ],
+        stepped: true,
+        //borderColor: chroma('red').brighten(),
+        //backgroundColor: chroma('red').brighten(3),
+        borderWidth: 2,
+
+      },{
+        label: 'Development Expenditure',
+        data: [ chart_data.EEC.EEC_2015_2016.DevelopmentExpenditure, 
+                chart_data.EEC.EEC_2016_2017.DevelopmentExpenditure, 
+                chart_data.EEC.EEC_2017_2018.DevelopmentExpenditure, 
+                chart_data.EEC.EEC_2018_2019.DevelopmentExpenditure, 
+                chart_data.EEC.EEC_2019_2020.DevelopmentExpenditure, 
+                chart_data.EEC.EEC_2020_2021.DevelopmentExpenditure, 
+                chart_data.EEC.EEC_2021_2022.DevelopmentExpenditure, 
+                chart_data.EEC.EEC_2022_2023.DevelopmentExpenditure
+            ],
+        stepped: true,
+        //borderColor: chroma('green').brighten(),
+        //backgroundColor: chroma('green').brighten(3),
+        borderWidth: 2,
+
+      }]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Chart Title',
+                },
+            legend: {
+                position: 'bottom'
+                }
+            },
+        elements: {
+          line: {
+            borderWidth: 3
+          }
+        }
+    }
+  });
+
+
+  const EEC_Bar = document.getElementById('EEC_BarChart');
+
+  new Chart(EEC_Bar, {
+    type: 'bar',
+    data: {
+      labels: chart_labels,
+      datasets: [{
+        label: 'Total Expenditure',
+        data: [ chart_data.EEC.EEC_2015_2016.TotalExpenditure, 
+                chart_data.EEC.EEC_2016_2017.TotalExpenditure, 
+                chart_data.EEC.EEC_2017_2018.TotalExpenditure, 
+                chart_data.EEC.EEC_2018_2019.TotalExpenditure, 
+                chart_data.EEC.EEC_2019_2020.TotalExpenditure, 
+                chart_data.EEC.EEC_2020_2021.TotalExpenditure, 
+                chart_data.EEC.EEC_2021_2022.TotalExpenditure, 
+                chart_data.EEC.EEC_2022_2023.TotalExpenditure
+            ],
+        // borderColor: chroma('hotpink').brighten(),
+        // backgroundColor: chroma('hotpink').brighten(2),
+        // borderWidth: 1,
+        // stack: 'Stack 0',
+      }]
+    },
+    options: {
+        indexAxis: 'y',
+        barThickness: 5,
+        elements: {
+            bar: {
+                borderWidth: 2,
+            }
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: 'EEC horizontal Chart Title',
+                },
+            legend: {
+                display: false,
+                position: 'bottom'
+                }
+            },
+        scales: {
+            x: {
+              // beginAtZero: true,
+                //stacked: true,
+
+            },
+            y: {
+                title: {
+                    display: true,
+                    align: 'center',
+                    text: 'Y axis label',  
+                }
+              // beginAtZero: true,
+              //stacked: true
+            }
         }
     }
   });
