@@ -53,12 +53,18 @@
 
     <div id="sidebar" class="d-grid gap-3">
         <div id="sidebar_item" class="p-2 bg-body-tertiary border">
-          <header>County budget allocation, expenditure and absorption rate</header> 
+          <div id="heading" class="text-center">
+            <h5>County budget allocation, expenditure and absorption rate</h5>
+          </div> 
           <!-- <canvas id="myChart"></canvas> -->
-          <div style=" height:97%; width:100%">
+          <div style="width:60%; display: inline-block;">
               <canvas id="myChart"></canvas>
+              <!-- <canvas id="myRadarChart"></canvas> -->
+          </div>  
+          <div style="width:35%; display: inline-block;">
+              <!-- <canvas id="myChart"></canvas> -->
               <canvas id="myRadarChart"></canvas>
-          </div>         
+          </div>        
         </div>
         <div id="sidebar_item" class="p-2 bg-body-tertiary border">Expenditure by Economic Classification </div>
         <div id="sidebar_item" class="p-2 bg-body-tertiary border">Local revenue collection </div>

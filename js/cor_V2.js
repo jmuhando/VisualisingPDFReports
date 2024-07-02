@@ -908,16 +908,25 @@ var chart_labels = ['2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-20
       }]
     },
     options: {
-      scales: {
-        x: {
-          // beginAtZero: true,
-          stacked: true
-        },
-        y: {
-          // beginAtZero: true,
-          stacked: true
+        plugins: {
+            title: {
+                display: true,
+                text: 'Chart Title',
+                },
+            legend: {
+                position: 'bottom'
+                }
+            },
+        scales: {
+            x: {
+              // beginAtZero: true,
+              stacked: true
+            },
+            y: {
+              // beginAtZero: true,
+              stacked: true
+            }
         }
-      }
     }
   });
 
@@ -976,6 +985,15 @@ var chart_labels = ['2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-20
       }]
     },
     options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Chart Title',
+                },
+            legend: {
+                position: 'bottom'
+                }
+            },
         elements: {
           line: {
             borderWidth: 3
