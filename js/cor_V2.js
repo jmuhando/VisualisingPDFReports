@@ -1245,7 +1245,80 @@ var chart_labels = ['2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-20
   });
 
 //PB
+//line
+  const PB_lineChart = document.getElementById('PB_lineChart');
 
+  new Chart(PB_lineChart, {
+    type: 'line',
+    data: {
+      labels: chart_labels,
+      datasets: [{
+        label: 'Recurrent Pending Bills',
+        data: [ chart_data.PB.PB_2015_2016.RecurrentPendingBills, 
+                chart_data.PB.PB_2016_2017.RecurrentPendingBills, 
+                chart_data.PB.PB_2017_2018.RecurrentPendingBills, 
+                chart_data.PB.PB_2018_2019.RecurrentPendingBills, 
+                chart_data.PB.PB_2019_2020.RecurrentPendingBills, 
+                chart_data.PB.PB_2020_2021.RecurrentPendingBills, 
+                chart_data.PB.PB_2021_2022.RecurrentPendingBills, 
+                chart_data.PB.PB_2022_2023.RecurrentPendingBills
+            ],
+        //stepped: true,
+        //borderColor: chroma('hotpink').brighten(),
+        //backgroundColor: chroma('hotpink').brighten(3),
+        borderWidth: 2,
+
+      },{
+        label: 'Development Pending Bills',
+        data: [ chart_data.PB.PB_2015_2016.DevelopmentPendingBills, 
+                chart_data.PB.PB_2016_2017.DevelopmentPendingBills, 
+                chart_data.PB.PB_2017_2018.DevelopmentPendingBills, 
+                chart_data.PB.PB_2018_2019.DevelopmentPendingBills, 
+                chart_data.PB.PB_2019_2020.DevelopmentPendingBills, 
+                chart_data.PB.PB_2020_2021.DevelopmentPendingBills, 
+                chart_data.PB.PB_2021_2022.DevelopmentPendingBills, 
+                chart_data.PB.PB_2022_2023.DevelopmentPendingBills
+            ],
+        //stepped: true,
+        //borderColor: chroma('red').brighten(),
+        //backgroundColor: chroma('red').brighten(3),
+        borderWidth: 2,
+
+      },{
+        label: 'Total Pending Bills',
+        data: [ chart_data.PB.PB_2015_2016.TotalPendingBills, 
+                chart_data.PB.PB_2016_2017.TotalPendingBills, 
+                chart_data.PB.PB_2017_2018.TotalPendingBills, 
+                chart_data.PB.PB_2018_2019.TotalPendingBills, 
+                chart_data.PB.PB_2019_2020.TotalPendingBills, 
+                chart_data.PB.PB_2020_2021.TotalPendingBills, 
+                chart_data.PB.PB_2021_2022.TotalPendingBills, 
+                chart_data.PB.PB_2022_2023.TotalPendingBills
+            ],
+        //stepped: true,
+        //borderColor: chroma('green').brighten(),
+        //backgroundColor: chroma('green').brighten(3),
+        borderWidth: 2,
+
+      }]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Pending Bills',
+                },
+            legend: {
+                position: 'bottom'
+                }
+            },
+        elements: {
+          line: {
+            borderWidth: 3
+          }
+        }
+    }
+  });
 
 
 
