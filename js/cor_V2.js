@@ -1140,6 +1140,116 @@ var chart_labels = ['2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-20
   });
 
 
+//LRC
+//line
+  const LRC_comboChart = document.getElementById('LRC_comboChart');
+
+  new Chart(LRC_comboChart, {
+    type: 'bar',
+    data: {
+      labels: chart_labels,
+      datasets: [{
+        label: 'Own Source Revenue Collection',
+        data: [ chart_data.LRC.LRC_2015_2016.OwnSourceRevenue_collection, 
+                chart_data.LRC.LRC_2016_2017.OwnSourceRevenue_collection, 
+                chart_data.LRC.LRC_2017_2018.OwnSourceRevenue_collection, 
+                chart_data.LRC.LRC_2018_2019.OwnSourceRevenue_collection, 
+                chart_data.LRC.LRC_2019_2020.OwnSourceRevenue_collection, 
+                chart_data.LRC.LRC_2020_2021.OwnSourceRevenue_collection, 
+                chart_data.LRC.LRC_2021_2022.OwnSourceRevenue_collection, 
+                chart_data.LRC.LRC_2022_2023.OwnSourceRevenue_collection
+            ],
+        //stepped: true,
+        //borderColor: chroma('hotpink').brighten(),
+        //backgroundColor: chroma('hotpink').brighten(3),
+        //borderWidth: 2,
+        order: 0
+
+      },{
+        label: 'Own Source Revenue Target',
+        data: [ chart_data.LRC.LRC_2015_2016.OwnSourceRevenue_target, 
+                chart_data.LRC.LRC_2016_2017.OwnSourceRevenue_target, 
+                chart_data.LRC.LRC_2017_2018.OwnSourceRevenue_target, 
+                chart_data.LRC.LRC_2018_2019.OwnSourceRevenue_target, 
+                chart_data.LRC.LRC_2019_2020.OwnSourceRevenue_target, 
+                chart_data.LRC.LRC_2020_2021.OwnSourceRevenue_target, 
+                chart_data.LRC.LRC_2021_2022.OwnSourceRevenue_target, 
+                chart_data.LRC.LRC_2022_2023.OwnSourceRevenue_target
+            ],
+        type: 'line',
+        order: 0
+        //borderColor: chroma('red').brighten(),
+        //backgroundColor: chroma('red').brighten(3),
+        // borderWidth: 2,
+
+      }]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Chart Title',
+                },
+            legend: {
+                position: 'bottom'
+                }
+            },
+        elements: {
+          line: {
+            borderWidth: 3
+          }
+        }
+    }
+  });
+
+//RADAR
+  const LRC_radarChart = document.getElementById('LRC_radarChart');
+
+  new Chart(LRC_radarChart, {
+    type: 'radar',
+    data: {
+      labels: chart_labels,
+      datasets: [{
+        label: 'Collection_vs_target',
+        data: [ chart_data.LRC.LRC_2015_2016.Collection_vs_target, 
+                chart_data.LRC.LRC_2016_2017.Collection_vs_target, 
+                chart_data.LRC.LRC_2017_2018.Collection_vs_target, 
+                chart_data.LRC.LRC_2018_2019.Collection_vs_target, 
+                chart_data.LRC.LRC_2019_2020.Collection_vs_target, 
+                chart_data.LRC.LRC_2020_2021.Collection_vs_target, 
+                chart_data.LRC.LRC_2021_2022.Collection_vs_target, 
+                chart_data.LRC.LRC_2022_2023.Collection_vs_target
+            ],
+        //borderColor: chroma('hotpink').brighten(),
+        //backgroundColor: chroma('hotpink').brighten(3),
+        borderWidth: 1,
+
+      }]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Collection_vs_target',
+                },
+            legend: {
+                position: 'bottom'
+                }
+            },
+        elements: {
+          line: {
+            borderWidth: 3
+          }
+        }
+    }
+  });
+
+//PB
+
+
+
+
+
 // _.each(data, function (value,key) {
 //     console.log(key);
 //     console.log(value);
