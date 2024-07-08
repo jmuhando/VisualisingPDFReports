@@ -63,64 +63,6 @@
         opacity: 0.7;
     }
 
-/*.sub1, .sub2 { display: none; }
-
-:checked ~ .sub1, :checked ~ .sub2 {
-    display: block;
-    margin-left: 40px;
-}*/
-
-/*#A,#B,#C,#D,#E,#F, .checkmark:after {
-    top: 18px;
-    left: 18px;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: red;
-}*/
-
-
-        
-/*        .info {
-            padding: 6px 8px;
-            font: 14px/16px Arial, Helvetica, sans-serif;
-            background: white;
-            background: rgba(255,255,255,0.8);
-            background: #ebfffe;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            border-radius: 5px;
-        }
-        .info h4 {
-            margin: 0 0 5px;
-            color: #777;
-        }
-        .legend {
-            line-height: 20px;
-            color: #555;
-        }
-        .legend i {
-            width: 20px;
-            height: 20px;
-            float: left;
-            margin-right: 8px;
-            opacity: 0.7;
-        }
-        .refreshButton {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 10px;
-            z-index: 400;
-            opacity: 0.8;
-            cursor: pointer;
-        }*/
-
-
-/*.leaflet-popup-content-wrapper{
-    width: 540px;
-    height: 530px;
-}*/
-
 
 /*IMAGE OVERLAY*/
         .popup-overlay{
@@ -151,27 +93,4 @@
           visibility:visible;
         }
 
-/*        button{
-          display:inline-block;
-          vertical-align:middle;
-          border-radius:30px;
-          margin:.20rem;
-          font-size: 1rem;
-          color:#666666;
-          background:   #ffffff;
-          border:1px solid #666666;  
-        }
-
-        button:hover{
-          border:1px solid #666666;
-          background:#666666;
-          color:#ffffff;
-        }
-        #pics {
-          width: 500px;
-          height: 500px;
-          background: url(../img/loading.gif) 50% no-repeat;
-          border: 1px solid black;
-          border-radius: 5px;
-        }*/
 
