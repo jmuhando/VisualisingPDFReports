@@ -360,7 +360,7 @@ var ourCustomControl = L.Control.extend({
     var container = L.DomUtil.create('div', ' leaflet-bar leaflet-control leaflet-control-layers');
     container.setAttribute('aria-haspopup','true');
     //container.innerHTML = '<a class="leaflet-control-layers-toggle" href="#" title="Layers" role="button"></a>'
-    container.innerHTML = '<h6 class = "text-center p-1"><b>Explore by Financial Years</b></h6>'+
+    container.innerHTML = '<h6 class = "text-center p-1"><b>Financial Years Overview</b></h6>'+
     // '<h6 class = "text-center p-1"><b>Explore data by Financial Years</b></h6>'+
     // '<section class="leaflet-control-layers-list">'+
     //   '<div class="leaflet-control-layers-base">'+
