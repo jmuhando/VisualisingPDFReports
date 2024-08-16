@@ -34,8 +34,8 @@
     height: 93%;
     }
 
-  #sidebar_item {
-    }
+/*  #sidebar_item {
+    }*/
 
         .info {
             padding: 6px 8px;
@@ -77,9 +77,9 @@
     z-index:10;
 }
 .popup-overlay.active{
-          /*displays pop-up when "active" class is present*/
-          visibility:visible;
-          text-align:center;
+    /*displays pop-up when "active" class is present*/
+    visibility:visible;
+    text-align:center;
 }
 
 .popup-content {
