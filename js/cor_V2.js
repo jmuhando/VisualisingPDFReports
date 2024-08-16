@@ -829,9 +829,8 @@ function Data_Extractor(data,county_name) {
 var chart_data = Data_Extractor(data,"total");
 
 
-
-
-//CHARTS Chart js
+//CHARTS 
+//Chart js
 
 var chart_labels = ['2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-2020', '2020-2021', '2021-2022', '2022-2023'];
 
