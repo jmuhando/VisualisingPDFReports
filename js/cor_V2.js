@@ -117,9 +117,10 @@ function zoomToFeature(e) {
 // update chart data with county level data
 var chart_data = Data_Extractor(data,e.target.feature.properties.NAME);
 console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}));
+console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);}));
 //your data coming from  service
 barChart.data.datasets[0].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}); 
-barChart.data.datasets[1].data=_.map(chart_data.EEC, function (value,key) {return _.values(value)[0];});
+barChart.data.datasets[1].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);});
 barChart.update();
 
   // for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
