@@ -119,20 +119,33 @@ var chart_data = Data_Extractor(data,e.target.feature.properties.NAME);
 //your data coming from  service
 //console.log(_.map(temp1.CBAEAR, function (value,key) {return _.values(value)[1];}));
 
-console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}));//Rec_BudgetEstimates
-console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[1];}));//Dev_BudgetEstimates
-console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[3];}));//Rec_Expenditure
-console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[4];}));//Dev_Expenditure
-
-// console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);}));
-// console.log(_.map(chart_data.LRC, function (value,key) {return _.values(value)[0];}));
-// console.log(_.map(chart_data.PB, function (value,key) {return _.values(value)[0];}));
+//CBAEAR bar graph update
+// console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}));//Rec_BudgetEstimates
+// console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[1];}));//Dev_BudgetEstimates
+// console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[3];}));//Rec_Expenditure
+// console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[4];}));//Dev_Expenditure
 
 barChart.data.datasets[0].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}); 
 barChart.data.datasets[1].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[1];});
 barChart.data.datasets[2].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[3];}); 
 barChart.data.datasets[3].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[4];});
 barChart.update();
+//CBAEAR radar chart update
+console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[7];}));//Dev_AbsorptionRate
+console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[6];}));//Rec_AbsorptionRate
+console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[8];}));//OverallAbsorptionRate
+
+radarChart.data.datasets[0].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[7];}); 
+radarChart.data.datasets[1].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[6];});
+radarChart.data.datasets[2].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[8];}); 
+radarChart.update();
+
+//EEC
+// console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);}));
+//LRC
+// console.log(_.map(chart_data.LRC, function (value,key) {return _.values(value)[0];}));
+//PB
+// console.log(_.map(chart_data.PB, function (value,key) {return _.values(value)[0];}));
 
   // for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
   //       if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == e.target.feature.properties.NAME) {
@@ -947,7 +960,7 @@ let barChart = new Chart(ctx, {
 //RADAR
   const RadarChart = document.getElementById('myRadarChart');
 
-  new Chart(RadarChart, {
+  let radarChart = new Chart(RadarChart, {
     type: 'radar',
     data: {
       labels: chart_labels,
