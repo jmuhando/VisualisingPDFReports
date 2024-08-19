@@ -116,11 +116,22 @@ function zoomToFeature(e) {
   console.log(Data_Extractor(data,e.target.feature.properties.NAME));
 // update chart data with county level data
 var chart_data = Data_Extractor(data,e.target.feature.properties.NAME);
-console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}));
-console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);}));
 //your data coming from  service
+//console.log(_.map(temp1.CBAEAR, function (value,key) {return _.values(value)[1];}));
+
+console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}));//Rec_BudgetEstimates
+console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[1];}));//Dev_BudgetEstimates
+console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[3];}));//Rec_Expenditure
+console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[4];}));//Dev_Expenditure
+
+// console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);}));
+// console.log(_.map(chart_data.LRC, function (value,key) {return _.values(value)[0];}));
+// console.log(_.map(chart_data.PB, function (value,key) {return _.values(value)[0];}));
+
 barChart.data.datasets[0].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}); 
-barChart.data.datasets[1].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);});
+barChart.data.datasets[1].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[1];});
+barChart.data.datasets[2].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[3];}); 
+barChart.data.datasets[3].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[4];});
 barChart.update();
 
   // for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
@@ -878,39 +889,37 @@ let barChart = new Chart(ctx, {
         backgroundColor: chroma('red').brighten(2),
         borderWidth: 1,
         stack: 'Stack 0',
-      },
-      // {
-      //   label: 'Rec_Expenditure',
-      //   data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Rec_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2016_2017.Rec_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2017_2018.Rec_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2018_2019.Rec_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2019_2020.Rec_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2020_2021.Rec_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2021_2022.Rec_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2022_2023.Rec_Expenditure
-      //       ],
-      //   borderColor: chroma('hotpink').brighten(),
-      //   backgroundColor: chroma('hotpink').brighten(2),
-      //   borderWidth: 1,
-      //   stack: 'Stack 1',
-      // },{
-      //   label: 'Dev_Expenditure',
-      //   data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Dev_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2016_2017.Dev_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2017_2018.Dev_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2018_2019.Dev_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2019_2020.Dev_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2020_2021.Dev_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2021_2022.Dev_Expenditure, 
-      //           chart_data.CBAEAR.CBAEAR_2022_2023.Dev_Expenditure
-      //       ],
-      //   borderColor: chroma('red').brighten(),
-      //   backgroundColor: chroma('red').brighten(2),
-      //   borderWidth: 1,
-      //   stack: 'Stack 1',
-      // }
-      ]
+      },{
+        label: 'Rec_Expenditure',
+        data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2016_2017.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2017_2018.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2018_2019.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2019_2020.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2020_2021.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2021_2022.Rec_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2022_2023.Rec_Expenditure
+            ],
+        borderColor: chroma('hotpink').brighten(),
+        backgroundColor: chroma('hotpink').brighten(2),
+        borderWidth: 1,
+        stack: 'Stack 1',
+      },{
+        label: 'Dev_Expenditure',
+        data: [ chart_data.CBAEAR.CBAEAR_2015_2016.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2016_2017.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2017_2018.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2018_2019.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2019_2020.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2020_2021.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2021_2022.Dev_Expenditure, 
+                chart_data.CBAEAR.CBAEAR_2022_2023.Dev_Expenditure
+            ],
+        borderColor: chroma('red').brighten(),
+        backgroundColor: chroma('red').brighten(2),
+        borderWidth: 1,
+        stack: 'Stack 1',
+      }]
     },
     options: {
         plugins: {
