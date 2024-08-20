@@ -144,15 +144,21 @@ radarChart.update();
 
 //EEC
 //EEC stepped line graph update
-console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);}));//Personnel Emoluments
-console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[1]/1000000);}));//Operations Maintenance
-console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[2]/1000000);}));//Development Expenditure
+// console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);}));//Personnel Emoluments
+// console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[1]/1000000);}));//Operations Maintenance
+// console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[2]/1000000);}));//Development Expenditure
 
 steppedlineChart.data.datasets[0].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);});//Personnel Emoluments
 steppedlineChart.data.datasets[1].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[1]/1000000);});//Operations Maintenance
 steppedlineChart.data.datasets[2].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[2]/1000000);});//Development Expenditure
 steppedlineChart.update();
 
+//EEC horizontal Bar graph update
+
+console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[3]/1000000);}));//Total Expenditure
+
+hrBarChart.data.datasets[0].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[3]/1000000);});//Total Expenditure
+hrBarChart.update();
 
 //LRC
 // console.log(_.map(chart_data.LRC, function (value,key) {return _.values(value)[0];}));
@@ -970,9 +976,9 @@ let barChart = new Chart(ctx, {
 });
 
 //RADAR
-  const RadarChart = document.getElementById('myRadarChart');
+const RadarChart = document.getElementById('myRadarChart');
 
-  let radarChart = new Chart(RadarChart, {
+let radarChart = new Chart(RadarChart, {
     type: 'radar',
     data: {
       labels: chart_labels,
@@ -1039,13 +1045,13 @@ let barChart = new Chart(ctx, {
           }
         }
     }
-  });
+});
 
 //EEC
 //line
-  const lineChart = document.getElementById('steppedChart');
+const lineChart = document.getElementById('steppedChart');
 
-  let steppedlineChart = new Chart(lineChart, {
+let steppedlineChart = new Chart(lineChart, {
     type: 'line',
     data: {
       labels: chart_labels,
@@ -1115,25 +1121,25 @@ let barChart = new Chart(ctx, {
           }
         }
     }
-  });
+});
 
 
-  const EEC_Bar = document.getElementById('EEC_BarChart');
+const EEC_Bar = document.getElementById('EEC_BarChart');
 
-  new Chart(EEC_Bar, {
+let hrBarChart = new Chart(EEC_Bar, {
     type: 'bar',
     data: {
       labels: chart_labels,
       datasets: [{
         label: 'Total Expenditure',
-        data: [ chart_data.EEC.EEC_2015_2016.TotalExpenditure, 
-                chart_data.EEC.EEC_2016_2017.TotalExpenditure, 
-                chart_data.EEC.EEC_2017_2018.TotalExpenditure, 
-                chart_data.EEC.EEC_2018_2019.TotalExpenditure, 
-                chart_data.EEC.EEC_2019_2020.TotalExpenditure, 
-                chart_data.EEC.EEC_2020_2021.TotalExpenditure, 
-                chart_data.EEC.EEC_2021_2022.TotalExpenditure, 
-                chart_data.EEC.EEC_2022_2023.TotalExpenditure
+        data: [ (chart_data.EEC.EEC_2015_2016.TotalExpenditure/1000000), 
+                (chart_data.EEC.EEC_2016_2017.TotalExpenditure/1000000), 
+                (chart_data.EEC.EEC_2017_2018.TotalExpenditure/1000000), 
+                (chart_data.EEC.EEC_2018_2019.TotalExpenditure/1000000), 
+                (chart_data.EEC.EEC_2019_2020.TotalExpenditure/1000000), 
+                (chart_data.EEC.EEC_2020_2021.TotalExpenditure/1000000), 
+                (chart_data.EEC.EEC_2021_2022.TotalExpenditure/1000000), 
+                (chart_data.EEC.EEC_2022_2023.TotalExpenditure/1000000)
             ],
         // borderColor: chroma('hotpink').brighten(),
         // backgroundColor: chroma('hotpink').brighten(2),
