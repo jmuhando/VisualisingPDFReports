@@ -169,16 +169,15 @@ hrBarChart.update();
 //console.log(_.map(chart_data.LRC, function (value,key) {return _.flatten(_.values(_.pick(value, 'Collection_vs_target')[0]));}));
 var osrc = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'OwnSourceRevenue_collection'));})
 var osrc_values = _.flatten(osrc)
-console.log(osrc_values);
-comboChart.data.datasets[0].data=osrc_values;
+console.log(osrc_values.map(function (el) {return el / 1000000;}));
+comboChart.data.datasets[0].data=osrc_values.map(function (el) {return el / 1000000;});
 
 var osrt = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'OwnSourceRevenue_target'));})
 var osrt_values = _.flatten(osrt)
-console.log(osrt_values);
-comboChart.data.datasets[1].data=osrt_values;
+console.log(osrt_values.map(function (el) {return el / 1000000;}));
+comboChart.data.datasets[1].data=osrt_values.map(function (el) {return el / 1000000;});
 
 comboChart.update();
-
 
 
 var cvt = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'Collection_vs_target'));})
