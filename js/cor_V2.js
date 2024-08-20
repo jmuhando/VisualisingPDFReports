@@ -169,12 +169,12 @@ hrBarChart.update();
 //console.log(_.map(chart_data.LRC, function (value,key) {return _.flatten(_.values(_.pick(value, 'Collection_vs_target')[0]));}));
 var osrc = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'OwnSourceRevenue_collection'));})
 var osrc_values = _.flatten(osrc)
-console.log(osrc_values.map(function (el) {return el / 1000000;}));
+//console.log(osrc_values.map(function (el) {return el / 1000000;}));
 comboChart.data.datasets[0].data=osrc_values.map(function (el) {return el / 1000000;});
 
 var osrt = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'OwnSourceRevenue_target'));})
 var osrt_values = _.flatten(osrt)
-console.log(osrt_values.map(function (el) {return el / 1000000;}));
+//console.log(osrt_values.map(function (el) {return el / 1000000;}));
 comboChart.data.datasets[1].data=osrt_values.map(function (el) {return el / 1000000;});
 
 comboChart.update();
@@ -182,14 +182,33 @@ comboChart.update();
 
 var cvt = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'Collection_vs_target'));})
 var cvt_values = _.flatten(cvt)
-console.log(cvt_values);
+//console.log(cvt_values);
 
 radarChartLRC.data.datasets[0].data=cvt_values; 
 radarChartLRC.update();
 //_.pick(value, 'OwnSourceRevenue_target','OwnSourceRevenue_collection')
 
 //PB
+//regularlineChart
 // console.log(_.map(chart_data.PB, function (value,key) {return _.values(value)[0];}));
+var rpb = _.map(chart_data.PB, function (value,key) {return _.values(_.pick(value, 'RecurrentPendingBills'));})//RecurrentPendingBills
+var rpb_values = _.flatten(rpb)
+console.log(rpb_values.map(function (el) {return el / 1000000;}));
+
+var dpb = _.map(chart_data.PB, function (value,key) {return _.values(_.pick(value, 'DevelopmentPendingBills'));})//DevelopmentPendingBills
+var dpb_values = _.flatten(dpb)
+console.log(dpb_values.map(function (el) {return el / 1000000;}));
+
+var tpb = _.map(chart_data.PB, function (value,key) {return _.values(_.pick(value, 'TotalPendingBills'));})//TotalPendingBills
+var tpb_values = _.flatten(tpb)
+console.log(tpb_values.map(function (el) {return el / 1000000;}));
+
+regularlineChart.data.datasets[0].data=rpb_values.map(function (el) {return el / 1000000;});//RecurrentPendingBills
+regularlineChart.data.datasets[1].data=dpb_values.map(function (el) {return el / 1000000;});//DevelopmentPendingBills
+regularlineChart.data.datasets[2].data=tpb_values.map(function (el) {return el / 1000000;});//TotalPendingBills
+regularlineChart.update();
+
+
 
   // for (let key in CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate) {
   //       if (CBAEAR.CBAEAR_2015_2016.OverallAbsorptionRate.hasOwnProperty(key) && key == e.target.feature.properties.NAME) {
@@ -1317,22 +1336,22 @@ let radarChartLRC = new Chart(LRC_radarChart, {
 
 //PB
 //line
-  const PB_lineChart = document.getElementById('PB_lineChart');
+const PB_lineChart = document.getElementById('PB_lineChart');
 
-  new Chart(PB_lineChart, {
+let regularlineChart = new Chart(PB_lineChart, {
     type: 'line',
     data: {
       labels: chart_labels,
       datasets: [{
         label: 'Recurrent Pending Bills',
-        data: [ chart_data.PB.PB_2015_2016.RecurrentPendingBills, 
-                chart_data.PB.PB_2016_2017.RecurrentPendingBills, 
-                chart_data.PB.PB_2017_2018.RecurrentPendingBills, 
-                chart_data.PB.PB_2018_2019.RecurrentPendingBills, 
-                chart_data.PB.PB_2019_2020.RecurrentPendingBills, 
-                chart_data.PB.PB_2020_2021.RecurrentPendingBills, 
-                chart_data.PB.PB_2021_2022.RecurrentPendingBills, 
-                chart_data.PB.PB_2022_2023.RecurrentPendingBills
+        data: [ (chart_data.PB.PB_2015_2016.RecurrentPendingBills/1000000), 
+                (chart_data.PB.PB_2016_2017.RecurrentPendingBills/1000000), 
+                (chart_data.PB.PB_2017_2018.RecurrentPendingBills/1000000), 
+                (chart_data.PB.PB_2018_2019.RecurrentPendingBills/1000000), 
+                (chart_data.PB.PB_2019_2020.RecurrentPendingBills/1000000), 
+                (chart_data.PB.PB_2020_2021.RecurrentPendingBills/1000000), 
+                (chart_data.PB.PB_2021_2022.RecurrentPendingBills/1000000), 
+                (chart_data.PB.PB_2022_2023.RecurrentPendingBills/1000000)
             ],
         //stepped: true,
         //borderColor: chroma('hotpink').brighten(),
@@ -1341,14 +1360,14 @@ let radarChartLRC = new Chart(LRC_radarChart, {
 
       },{
         label: 'Development Pending Bills',
-        data: [ chart_data.PB.PB_2015_2016.DevelopmentPendingBills, 
-                chart_data.PB.PB_2016_2017.DevelopmentPendingBills, 
-                chart_data.PB.PB_2017_2018.DevelopmentPendingBills, 
-                chart_data.PB.PB_2018_2019.DevelopmentPendingBills, 
-                chart_data.PB.PB_2019_2020.DevelopmentPendingBills, 
-                chart_data.PB.PB_2020_2021.DevelopmentPendingBills, 
-                chart_data.PB.PB_2021_2022.DevelopmentPendingBills, 
-                chart_data.PB.PB_2022_2023.DevelopmentPendingBills
+        data: [ (chart_data.PB.PB_2015_2016.DevelopmentPendingBills/1000000), 
+                (chart_data.PB.PB_2016_2017.DevelopmentPendingBills/1000000), 
+                (chart_data.PB.PB_2017_2018.DevelopmentPendingBills/1000000), 
+                (chart_data.PB.PB_2018_2019.DevelopmentPendingBills/1000000), 
+                (chart_data.PB.PB_2019_2020.DevelopmentPendingBills/1000000), 
+                (chart_data.PB.PB_2020_2021.DevelopmentPendingBills/1000000), 
+                (chart_data.PB.PB_2021_2022.DevelopmentPendingBills/1000000), 
+                (chart_data.PB.PB_2022_2023.DevelopmentPendingBills/1000000)
             ],
         //stepped: true,
         //borderColor: chroma('red').brighten(),
@@ -1357,14 +1376,14 @@ let radarChartLRC = new Chart(LRC_radarChart, {
 
       },{
         label: 'Total Pending Bills',
-        data: [ chart_data.PB.PB_2015_2016.TotalPendingBills, 
-                chart_data.PB.PB_2016_2017.TotalPendingBills, 
-                chart_data.PB.PB_2017_2018.TotalPendingBills, 
-                chart_data.PB.PB_2018_2019.TotalPendingBills, 
-                chart_data.PB.PB_2019_2020.TotalPendingBills, 
-                chart_data.PB.PB_2020_2021.TotalPendingBills, 
-                chart_data.PB.PB_2021_2022.TotalPendingBills, 
-                chart_data.PB.PB_2022_2023.TotalPendingBills
+        data: [ (chart_data.PB.PB_2015_2016.TotalPendingBills/1000000), 
+                (chart_data.PB.PB_2016_2017.TotalPendingBills/1000000), 
+                (chart_data.PB.PB_2017_2018.TotalPendingBills/1000000), 
+                (chart_data.PB.PB_2018_2019.TotalPendingBills/1000000), 
+                (chart_data.PB.PB_2019_2020.TotalPendingBills/1000000), 
+                (chart_data.PB.PB_2020_2021.TotalPendingBills/1000000), 
+                (chart_data.PB.PB_2021_2022.TotalPendingBills/1000000), 
+                (chart_data.PB.PB_2022_2023.TotalPendingBills/1000000)
             ],
         //stepped: true,
         //borderColor: chroma('green').brighten(),
@@ -1389,7 +1408,7 @@ let radarChartLRC = new Chart(LRC_radarChart, {
           }
         }
     }
-  });
+});
 
 // _.each(data, function (value,key) {
 //     console.log(key);
