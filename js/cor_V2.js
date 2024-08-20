@@ -119,6 +119,7 @@ var chart_data = Data_Extractor(data,e.target.feature.properties.NAME);
 //your data coming from  service
 //console.log(_.map(temp1.CBAEAR, function (value,key) {return _.values(value)[1];}));
 
+//CBAEAR
 //CBAEAR bar graph update
 // console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}));//Rec_BudgetEstimates
 // console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[1];}));//Dev_BudgetEstimates
@@ -130,10 +131,11 @@ barChart.data.datasets[1].data=_.map(chart_data.CBAEAR, function (value,key) {re
 barChart.data.datasets[2].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[3];}); 
 barChart.data.datasets[3].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[4];});
 barChart.update();
+
 //CBAEAR radar chart update
-console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[7];}));//Dev_AbsorptionRate
-console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[6];}));//Rec_AbsorptionRate
-console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[8];}));//OverallAbsorptionRate
+// console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[7];}));//Dev_AbsorptionRate
+// console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[6];}));//Rec_AbsorptionRate
+// console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[8];}));//OverallAbsorptionRate
 
 radarChart.data.datasets[0].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[7];}); 
 radarChart.data.datasets[1].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[6];});
@@ -141,7 +143,17 @@ radarChart.data.datasets[2].data=_.map(chart_data.CBAEAR, function (value,key) {
 radarChart.update();
 
 //EEC
-// console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);}));
+//EEC stepped line graph update
+console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);}));//Personnel Emoluments
+console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[1]/1000000);}));//Operations Maintenance
+console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[2]/1000000);}));//Development Expenditure
+
+steppedlineChart.data.datasets[0].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);});//Personnel Emoluments
+steppedlineChart.data.datasets[1].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[1]/1000000);});//Operations Maintenance
+steppedlineChart.data.datasets[2].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[2]/1000000);});//Development Expenditure
+steppedlineChart.update();
+
+
 //LRC
 // console.log(_.map(chart_data.LRC, function (value,key) {return _.values(value)[0];}));
 //PB
@@ -1033,20 +1045,20 @@ let barChart = new Chart(ctx, {
 //line
   const lineChart = document.getElementById('steppedChart');
 
-  new Chart(lineChart, {
+  let steppedlineChart = new Chart(lineChart, {
     type: 'line',
     data: {
       labels: chart_labels,
       datasets: [{
         label: 'Personnel Emoluments',
-        data: [ chart_data.EEC.EEC_2015_2016.PersonnelEmoluments, 
-                chart_data.EEC.EEC_2016_2017.PersonnelEmoluments, 
-                chart_data.EEC.EEC_2017_2018.PersonnelEmoluments, 
-                chart_data.EEC.EEC_2018_2019.PersonnelEmoluments, 
-                chart_data.EEC.EEC_2019_2020.PersonnelEmoluments, 
-                chart_data.EEC.EEC_2020_2021.PersonnelEmoluments, 
-                chart_data.EEC.EEC_2021_2022.PersonnelEmoluments, 
-                chart_data.EEC.EEC_2022_2023.PersonnelEmoluments
+        data: [ (chart_data.EEC.EEC_2015_2016.PersonnelEmoluments/1000000), 
+                (chart_data.EEC.EEC_2016_2017.PersonnelEmoluments/1000000), 
+                (chart_data.EEC.EEC_2017_2018.PersonnelEmoluments/1000000), 
+                (chart_data.EEC.EEC_2018_2019.PersonnelEmoluments/1000000), 
+                (chart_data.EEC.EEC_2019_2020.PersonnelEmoluments/1000000), 
+                (chart_data.EEC.EEC_2020_2021.PersonnelEmoluments/1000000), 
+                (chart_data.EEC.EEC_2021_2022.PersonnelEmoluments/1000000), 
+                (chart_data.EEC.EEC_2022_2023.PersonnelEmoluments/1000000)
             ],
         stepped: true,
         //borderColor: chroma('hotpink').brighten(),
@@ -1055,14 +1067,14 @@ let barChart = new Chart(ctx, {
 
       },{
         label: 'Operations Maintenance',
-        data: [ chart_data.EEC.EEC_2015_2016.Operations_Maintenance, 
-                chart_data.EEC.EEC_2016_2017.Operations_Maintenance, 
-                chart_data.EEC.EEC_2017_2018.Operations_Maintenance, 
-                chart_data.EEC.EEC_2018_2019.Operations_Maintenance, 
-                chart_data.EEC.EEC_2019_2020.Operations_Maintenance, 
-                chart_data.EEC.EEC_2020_2021.Operations_Maintenance, 
-                chart_data.EEC.EEC_2021_2022.Operations_Maintenance, 
-                chart_data.EEC.EEC_2022_2023.Operations_Maintenance
+        data: [ (chart_data.EEC.EEC_2015_2016.Operations_Maintenance/1000000), 
+                (chart_data.EEC.EEC_2016_2017.Operations_Maintenance/1000000), 
+                (chart_data.EEC.EEC_2017_2018.Operations_Maintenance/1000000), 
+                (chart_data.EEC.EEC_2018_2019.Operations_Maintenance/1000000), 
+                (chart_data.EEC.EEC_2019_2020.Operations_Maintenance/1000000), 
+                (chart_data.EEC.EEC_2020_2021.Operations_Maintenance/1000000), 
+                (chart_data.EEC.EEC_2021_2022.Operations_Maintenance/1000000), 
+                (chart_data.EEC.EEC_2022_2023.Operations_Maintenance/1000000)
             ],
         stepped: true,
         //borderColor: chroma('red').brighten(),
@@ -1071,14 +1083,14 @@ let barChart = new Chart(ctx, {
 
       },{
         label: 'Development Expenditure',
-        data: [ chart_data.EEC.EEC_2015_2016.DevelopmentExpenditure, 
-                chart_data.EEC.EEC_2016_2017.DevelopmentExpenditure, 
-                chart_data.EEC.EEC_2017_2018.DevelopmentExpenditure, 
-                chart_data.EEC.EEC_2018_2019.DevelopmentExpenditure, 
-                chart_data.EEC.EEC_2019_2020.DevelopmentExpenditure, 
-                chart_data.EEC.EEC_2020_2021.DevelopmentExpenditure, 
-                chart_data.EEC.EEC_2021_2022.DevelopmentExpenditure, 
-                chart_data.EEC.EEC_2022_2023.DevelopmentExpenditure
+        data: [ (chart_data.EEC.EEC_2015_2016.DevelopmentExpenditure/1000000), 
+                (chart_data.EEC.EEC_2016_2017.DevelopmentExpenditure/1000000), 
+                (chart_data.EEC.EEC_2017_2018.DevelopmentExpenditure/1000000), 
+                (chart_data.EEC.EEC_2018_2019.DevelopmentExpenditure/1000000), 
+                (chart_data.EEC.EEC_2019_2020.DevelopmentExpenditure/1000000), 
+                (chart_data.EEC.EEC_2020_2021.DevelopmentExpenditure/1000000), 
+                (chart_data.EEC.EEC_2021_2022.DevelopmentExpenditure/1000000), 
+                (chart_data.EEC.EEC_2022_2023.DevelopmentExpenditure/1000000)
             ],
         stepped: true,
         //borderColor: chroma('green').brighten(),
