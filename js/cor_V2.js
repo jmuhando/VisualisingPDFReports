@@ -155,13 +155,37 @@ steppedlineChart.update();
 
 //EEC horizontal Bar graph update
 
-console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[3]/1000000);}));//Total Expenditure
+//console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[3]/1000000);}));//Total Expenditure
 
 hrBarChart.data.datasets[0].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[3]/1000000);});//Total Expenditure
 hrBarChart.update();
 
 //LRC
-// console.log(_.map(chart_data.LRC, function (value,key) {return _.values(value)[0];}));
+//comboBarLine chart
+// console.log(_.map(chart_data.LRC, function (value,key) {return _.values(value)[name];}));
+// console.log(_.union(_.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'Collection_vs_target'));})));
+// console.log(_.map(chart_data.LRC, _.flatten(function (value,key) {return _.values(_.pick(value, 'Collection_vs_target'));})));
+//var cvt = "Collection_vs_target"
+//console.log(_.map(chart_data.LRC, function (value,key) {return _.flatten(_.values(_.pick(value, 'Collection_vs_target')[0]));}));
+var osrc = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'OwnSourceRevenue_collection'));})
+var osrc_values = _.flatten(osrc)
+console.log(osrc_values);
+comboChart.data.datasets[0].data=osrc_values;
+
+var osrt = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'OwnSourceRevenue_target'));})
+var osrt_values = _.flatten(osrt)
+console.log(osrt_values);
+comboChart.data.datasets[1].data=osrt_values;
+
+comboChart.update();
+
+
+
+var cvt = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'Collection_vs_target'));})
+var cvt_values = _.flatten(cvt)
+console.log(cvt_values);
+//_.pick(value, 'OwnSourceRevenue_target','OwnSourceRevenue_collection')
+
 //PB
 // console.log(_.map(chart_data.PB, function (value,key) {return _.values(value)[0];}));
 
@@ -1182,27 +1206,27 @@ let hrBarChart = new Chart(EEC_Bar, {
             }
         }
     }
-  });
+});
 
 
 //LRC
 //line
-  const LRC_comboChart = document.getElementById('LRC_comboChart');
+const LRC_comboChart = document.getElementById('LRC_comboChart');
 
-  new Chart(LRC_comboChart, {
+let comboChart = new Chart(LRC_comboChart, {
     type: 'bar',
     data: {
       labels: chart_labels,
       datasets: [{
         label: 'Own Source Revenue Collection',
-        data: [ chart_data.LRC.LRC_2015_2016.OwnSourceRevenue_collection, 
-                chart_data.LRC.LRC_2016_2017.OwnSourceRevenue_collection, 
-                chart_data.LRC.LRC_2017_2018.OwnSourceRevenue_collection, 
-                chart_data.LRC.LRC_2018_2019.OwnSourceRevenue_collection, 
-                chart_data.LRC.LRC_2019_2020.OwnSourceRevenue_collection, 
-                chart_data.LRC.LRC_2020_2021.OwnSourceRevenue_collection, 
-                chart_data.LRC.LRC_2021_2022.OwnSourceRevenue_collection, 
-                chart_data.LRC.LRC_2022_2023.OwnSourceRevenue_collection
+        data: [ (chart_data.LRC.LRC_2015_2016.OwnSourceRevenue_collection/1000000), 
+                (chart_data.LRC.LRC_2016_2017.OwnSourceRevenue_collection/1000000), 
+                (chart_data.LRC.LRC_2017_2018.OwnSourceRevenue_collection/1000000), 
+                (chart_data.LRC.LRC_2018_2019.OwnSourceRevenue_collection/1000000), 
+                (chart_data.LRC.LRC_2019_2020.OwnSourceRevenue_collection/1000000), 
+                (chart_data.LRC.LRC_2020_2021.OwnSourceRevenue_collection/1000000), 
+                (chart_data.LRC.LRC_2021_2022.OwnSourceRevenue_collection/1000000), 
+                (chart_data.LRC.LRC_2022_2023.OwnSourceRevenue_collection/1000000)
             ],
         //stepped: true,
         //borderColor: chroma('hotpink').brighten(),
@@ -1212,14 +1236,14 @@ let hrBarChart = new Chart(EEC_Bar, {
 
       },{
         label: 'Own Source Revenue Target',
-        data: [ chart_data.LRC.LRC_2015_2016.OwnSourceRevenue_target, 
-                chart_data.LRC.LRC_2016_2017.OwnSourceRevenue_target, 
-                chart_data.LRC.LRC_2017_2018.OwnSourceRevenue_target, 
-                chart_data.LRC.LRC_2018_2019.OwnSourceRevenue_target, 
-                chart_data.LRC.LRC_2019_2020.OwnSourceRevenue_target, 
-                chart_data.LRC.LRC_2020_2021.OwnSourceRevenue_target, 
-                chart_data.LRC.LRC_2021_2022.OwnSourceRevenue_target, 
-                chart_data.LRC.LRC_2022_2023.OwnSourceRevenue_target
+        data: [ (chart_data.LRC.LRC_2015_2016.OwnSourceRevenue_target/1000000), 
+                (chart_data.LRC.LRC_2016_2017.OwnSourceRevenue_target/1000000), 
+                (chart_data.LRC.LRC_2017_2018.OwnSourceRevenue_target/1000000), 
+                (chart_data.LRC.LRC_2018_2019.OwnSourceRevenue_target/1000000), 
+                (chart_data.LRC.LRC_2019_2020.OwnSourceRevenue_target/1000000), 
+                (chart_data.LRC.LRC_2020_2021.OwnSourceRevenue_target/1000000), 
+                (chart_data.LRC.LRC_2021_2022.OwnSourceRevenue_target/1000000), 
+                (chart_data.LRC.LRC_2022_2023.OwnSourceRevenue_target/1000000)
             ],
         type: 'line',
         order: 0
@@ -1245,7 +1269,7 @@ let hrBarChart = new Chart(EEC_Bar, {
           }
         }
     }
-  });
+});
 
 //RADAR
   const LRC_radarChart = document.getElementById('LRC_radarChart');
