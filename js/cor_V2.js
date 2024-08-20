@@ -183,6 +183,9 @@ comboChart.update();
 var cvt = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'Collection_vs_target'));})
 var cvt_values = _.flatten(cvt)
 console.log(cvt_values);
+
+radarChartLRC.data.datasets[0].data=cvt_values; 
+radarChartLRC.update();
 //_.pick(value, 'OwnSourceRevenue_target','OwnSourceRevenue_collection')
 
 //PB
@@ -1271,9 +1274,9 @@ let comboChart = new Chart(LRC_comboChart, {
 });
 
 //RADAR
-  const LRC_radarChart = document.getElementById('LRC_radarChart');
+const LRC_radarChart = document.getElementById('LRC_radarChart');
 
-  new Chart(LRC_radarChart, {
+let radarChartLRC = new Chart(LRC_radarChart, {
     type: 'radar',
     data: {
       labels: chart_labels,
@@ -1310,7 +1313,7 @@ let comboChart = new Chart(LRC_comboChart, {
           }
         }
     }
-  });
+});
 
 //PB
 //line
