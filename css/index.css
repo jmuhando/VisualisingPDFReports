@@ -38,6 +38,8 @@ body {
 .split-left {
     background-color: #f6f7fa;
     background-image: url('../img/county_comparison.png');
+    background-repeat: no-repeat;
+    background-position: center;
     opacity: .3;
 /*    color: #434373;*/
     border: 2px solid grey;
