@@ -37,9 +37,12 @@ body {
 
 .split-left {
     background-color: #f6f7fa;
-    color: #434373;
+    background-image: url('../img/county_comparison.png');
+    opacity: .3;
+/*    color: #434373;*/
     border: 2px solid grey;
 }
+
 
 p {
     line-height: 30px;
@@ -53,6 +56,7 @@ p {
 
 .split-left:hover {
     background-color: #cbeaeb;
+    opacity: .8;
 /*    transform: scale(1.0);*/
     border: 2px solid rgb(146, 205, 223);
 }
@@ -62,6 +66,7 @@ p {
 /*    transform: scale(1.0);*/
     border: 2px solid rgb(146, 205, 223);
 }
+
 
 .footer  {
 /*  margin-top: 0.9%;*/
