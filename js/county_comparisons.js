@@ -6,7 +6,7 @@ var map = L.map('map',{
   maxZoom:10,
 });
 
-var osm_baselayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+//var osm_baselayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 
 //LAYER STYLES
