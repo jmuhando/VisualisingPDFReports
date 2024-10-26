@@ -50,7 +50,10 @@ p {
 
 .split-right {
     background-color: #f6f7fa;
-    color: #434373;
+    background-image: url('../img/county_specific.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .3;
     border: 2px solid grey;
 }
 
@@ -62,6 +65,7 @@ p {
 
 .split-right:hover {
     background-color: #cbeaeb;
+    opacity: .8;
     border: 2px solid rgb(146, 205, 223);
 }
 
