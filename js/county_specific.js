@@ -1,4 +1,3 @@
-
 //MAP
 var map = L.map('map',{
   center :[0.6000002, 37.7650],
@@ -22,18 +21,11 @@ var style_boundary = {
 
 function zoomToFeature(e) {
     info1.update(e.target.feature.properties);
-    console.log(e.target.feature.properties.NAME);
-    console.log(Data_Extractor(data,e.target.feature.properties.NAME));
 
 // update chart data with county level data
     var chart_data = Data_Extractor(data,e.target.feature.properties.NAME);
     //CBAEAR
     //CBAEAR bar graph update
-    // console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}));//Rec_BudgetEstimates
-    // console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[1];}));//Dev_BudgetEstimates
-    // console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[3];}));//Rec_Expenditure
-    // console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[4];}));//Dev_Expenditure
-
     barChart.data.datasets[0].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[0];}); 
     barChart.data.datasets[1].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[1];});
     barChart.data.datasets[2].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[3];}); 
@@ -41,10 +33,6 @@ function zoomToFeature(e) {
     barChart.update();
 
     //CBAEAR radar chart update
-    // console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[7];}));//Dev_AbsorptionRate
-    // console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[6];}));//Rec_AbsorptionRate
-    // console.log(_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[8];}));//OverallAbsorptionRate
-
     radarChart.data.datasets[0].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[7];}); 
     radarChart.data.datasets[1].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[6];});
     radarChart.data.datasets[2].data=_.map(chart_data.CBAEAR, function (value,key) {return _.values(value)[8];}); 
@@ -52,70 +40,45 @@ function zoomToFeature(e) {
 
     //EEC
     //EEC stepped line graph update
-    // console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);}));//Personnel Emoluments
-    // console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[1]/1000000);}));//Operations Maintenance
-    // console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[2]/1000000);}));//Development Expenditure
-
     steppedlineChart.data.datasets[0].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[0]/1000000);});//Personnel Emoluments
     steppedlineChart.data.datasets[1].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[1]/1000000);});//Operations Maintenance
     steppedlineChart.data.datasets[2].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[2]/1000000);});//Development Expenditure
     steppedlineChart.update();
 
     //EEC horizontal Bar graph update
-
-    //console.log(_.map(chart_data.EEC, function (value,key) {return (_.values(value)[3]/1000000);}));//Total Expenditure
-
     hrBarChart.data.datasets[0].data=_.map(chart_data.EEC, function (value,key) {return (_.values(value)[3]/1000000);});//Total Expenditure
     hrBarChart.update();
 
     //LRC
     //comboBarLine chart
-    // console.log(_.map(chart_data.LRC, function (value,key) {return _.values(value)[name];}));
-    // console.log(_.union(_.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'Collection_vs_target'));})));
-    // console.log(_.map(chart_data.LRC, _.flatten(function (value,key) {return _.values(_.pick(value, 'Collection_vs_target'));})));
-    //var cvt = "Collection_vs_target"
-    //console.log(_.map(chart_data.LRC, function (value,key) {return _.flatten(_.values(_.pick(value, 'Collection_vs_target')[0]));}));
     var osrc = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'OwnSourceRevenue_collection'));})
     var osrc_values = _.flatten(osrc)
-    //console.log(osrc_values.map(function (el) {return el / 1000000;}));
     comboChart.data.datasets[0].data=osrc_values.map(function (el) {return el / 1000000;});
 
     var osrt = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'OwnSourceRevenue_target'));})
     var osrt_values = _.flatten(osrt)
-    //console.log(osrt_values.map(function (el) {return el / 1000000;}));
     comboChart.data.datasets[1].data=osrt_values.map(function (el) {return el / 1000000;});
-
     comboChart.update();
 
-
+    //Radar
     var cvt = _.map(chart_data.LRC, function (value,key) {return _.values(_.pick(value, 'Collection_vs_target'));})
     var cvt_values = _.flatten(cvt)
-    //console.log(cvt_values);
-
     radarChartLRC.data.datasets[0].data=cvt_values; 
     radarChartLRC.update();
-    //_.pick(value, 'OwnSourceRevenue_target','OwnSourceRevenue_collection')
 
     //PB
     //regularlineChart
-    // console.log(_.map(chart_data.PB, function (value,key) {return _.values(value)[0];}));
     var rpb = _.map(chart_data.PB, function (value,key) {return _.values(_.pick(value, 'RecurrentPendingBills'));})//RecurrentPendingBills
     var rpb_values = _.flatten(rpb)
-    console.log(rpb_values.map(function (el) {return el / 1000000;}));
-
     var dpb = _.map(chart_data.PB, function (value,key) {return _.values(_.pick(value, 'DevelopmentPendingBills'));})//DevelopmentPendingBills
     var dpb_values = _.flatten(dpb)
-    console.log(dpb_values.map(function (el) {return el / 1000000;}));
-
     var tpb = _.map(chart_data.PB, function (value,key) {return _.values(_.pick(value, 'TotalPendingBills'));})//TotalPendingBills
     var tpb_values = _.flatten(tpb)
-    console.log(tpb_values.map(function (el) {return el / 1000000;}));
 
     regularlineChart.data.datasets[0].data=rpb_values.map(function (el) {return el / 1000000;});//RecurrentPendingBills
     regularlineChart.data.datasets[1].data=dpb_values.map(function (el) {return el / 1000000;});//DevelopmentPendingBills
     regularlineChart.data.datasets[2].data=tpb_values.map(function (el) {return el / 1000000;});//TotalPendingBills
     regularlineChart.update();
-
 //zoom county
     map.fitBounds(e.target.getBounds());
 }
@@ -128,11 +91,9 @@ function onEachFeature(feature, layer) {
 }
 
 
-
-
 //County Layer
 var counties_layer = L.geoJson(counties,{style:style_boundary ,onEachFeature:onEachFeature}).addTo(map);
-//console.log(counties_layer);
+
 
 //INFO COUNTY WINDOW
 var info1 = L.control({position: 'topleft'});
@@ -143,7 +104,7 @@ info1.onAdd = function (map) {
     return this._div;
 };
 
-// method that we will use to update the control based on feature properties passed
+// update method 
 info1.update = function (props) {
     this._div.innerHTML =   (props ?
         '<h6><b>'+props.District+'</b></h6>' 
@@ -153,9 +114,7 @@ info1.update = function (props) {
 info1.addTo(map);
 
 //GRAPHS
-
 var data = {'CBAEAR':CBAEAR,'EEC':EEC,'LRC':LRC,'PB':PB};
-
 function Data_Extractor(data,county_name) {
     var each_data = {};
     if (_.isEmpty(each_data)) {
@@ -211,17 +170,14 @@ function Data_Extractor(data,county_name) {
     return each_data;
     // body...
 }
-
 var chart_data = Data_Extractor(data,"total");
 
 
 //CHARTS 
 //Chart js
-
 var chart_labels = ['2015-2016', '2016-2017', '2017-2018', '2018-2019', '2019-2020', '2020-2021', '2021-2022', '2022-2023'];
 
 const ctx = document.getElementById('myChart');
-
 let barChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -313,7 +269,6 @@ let barChart = new Chart(ctx, {
 
 //RADAR
 const RadarChart = document.getElementById('myRadarChart');
-
 let radarChart = new Chart(RadarChart, {
     type: 'radar',
     data: {
@@ -329,8 +284,6 @@ let radarChart = new Chart(RadarChart, {
                 chart_data.CBAEAR.CBAEAR_2021_2022.Dev_AbsorptionRate, 
                 chart_data.CBAEAR.CBAEAR_2022_2023.Dev_AbsorptionRate
             ],
-        //borderColor: chroma('hotpink').brighten(),
-        //backgroundColor: chroma('hotpink').brighten(3),
         borderWidth: 1,
 
       },{
@@ -344,8 +297,6 @@ let radarChart = new Chart(RadarChart, {
                 chart_data.CBAEAR.CBAEAR_2021_2022.Rec_AbsorptionRate, 
                 chart_data.CBAEAR.CBAEAR_2022_2023.Rec_AbsorptionRate
             ],
-        //borderColor: chroma('red').brighten(),
-        //backgroundColor: chroma('red').brighten(3),
         borderWidth: 1,
 
       },{
@@ -359,8 +310,6 @@ let radarChart = new Chart(RadarChart, {
                 chart_data.CBAEAR.CBAEAR_2021_2022.OverallAbsorptionRate, 
                 chart_data.CBAEAR.CBAEAR_2022_2023.OverallAbsorptionRate
             ],
-        //borderColor: chroma('green').brighten(),
-        //backgroundColor: chroma('green').brighten(3),
         borderWidth: 1,
 
       }]
@@ -386,7 +335,6 @@ let radarChart = new Chart(RadarChart, {
 //EEC
 //line
 const lineChart = document.getElementById('steppedChart');
-
 let steppedlineChart = new Chart(lineChart, {
     type: 'line',
     data: {
@@ -403,8 +351,6 @@ let steppedlineChart = new Chart(lineChart, {
                 (chart_data.EEC.EEC_2022_2023.PersonnelEmoluments/1000000)
             ],
         stepped: true,
-        //borderColor: chroma('hotpink').brighten(),
-        //backgroundColor: chroma('hotpink').brighten(3),
         borderWidth: 2,
 
       },{
@@ -419,8 +365,6 @@ let steppedlineChart = new Chart(lineChart, {
                 (chart_data.EEC.EEC_2022_2023.Operations_Maintenance/1000000)
             ],
         stepped: true,
-        //borderColor: chroma('red').brighten(),
-        //backgroundColor: chroma('red').brighten(3),
         borderWidth: 2,
 
       },{
@@ -435,8 +379,6 @@ let steppedlineChart = new Chart(lineChart, {
                 (chart_data.EEC.EEC_2022_2023.DevelopmentExpenditure/1000000)
             ],
         stepped: true,
-        //borderColor: chroma('green').brighten(),
-        //backgroundColor: chroma('green').brighten(3),
         borderWidth: 2,
 
       }]
@@ -461,7 +403,6 @@ let steppedlineChart = new Chart(lineChart, {
 
 
 const EEC_Bar = document.getElementById('EEC_BarChart');
-
 let hrBarChart = new Chart(EEC_Bar, {
     type: 'bar',
     data: {
@@ -477,10 +418,6 @@ let hrBarChart = new Chart(EEC_Bar, {
                 (chart_data.EEC.EEC_2021_2022.TotalExpenditure/1000000), 
                 (chart_data.EEC.EEC_2022_2023.TotalExpenditure/1000000)
             ],
-        // borderColor: chroma('hotpink').brighten(),
-        // backgroundColor: chroma('hotpink').brighten(2),
-        // borderWidth: 1,
-        // stack: 'Stack 0',
       }]
     },
     options: {
@@ -503,9 +440,6 @@ let hrBarChart = new Chart(EEC_Bar, {
             },
         scales: {
             x: {
-              // beginAtZero: true,
-                //stacked: true,
-
             },
             y: {
                 title: {
@@ -513,8 +447,6 @@ let hrBarChart = new Chart(EEC_Bar, {
                     align: 'center',
                     text: 'Y axis label',  
                 }
-              // beginAtZero: true,
-              //stacked: true
             }
         }
     }
@@ -524,7 +456,6 @@ let hrBarChart = new Chart(EEC_Bar, {
 //LRC
 //line
 const LRC_comboChart = document.getElementById('LRC_comboChart');
-
 let comboChart = new Chart(LRC_comboChart, {
     type: 'bar',
     data: {
@@ -540,10 +471,6 @@ let comboChart = new Chart(LRC_comboChart, {
                 (chart_data.LRC.LRC_2021_2022.OwnSourceRevenue_collection/1000000), 
                 (chart_data.LRC.LRC_2022_2023.OwnSourceRevenue_collection/1000000)
             ],
-        //stepped: true,
-        //borderColor: chroma('hotpink').brighten(),
-        //backgroundColor: chroma('hotpink').brighten(3),
-        //borderWidth: 2,
         order: 0
 
       },{
@@ -559,9 +486,6 @@ let comboChart = new Chart(LRC_comboChart, {
             ],
         type: 'line',
         order: 0
-        //borderColor: chroma('red').brighten(),
-        //backgroundColor: chroma('red').brighten(3),
-        // borderWidth: 2,
 
       }]
     },
@@ -601,8 +525,6 @@ let radarChartLRC = new Chart(LRC_radarChart, {
                 chart_data.LRC.LRC_2021_2022.Collection_vs_target, 
                 chart_data.LRC.LRC_2022_2023.Collection_vs_target
             ],
-        //borderColor: chroma('hotpink').brighten(),
-        //backgroundColor: chroma('hotpink').brighten(3),
         borderWidth: 1,
 
       }]
@@ -628,7 +550,6 @@ let radarChartLRC = new Chart(LRC_radarChart, {
 //PB
 //line
 const PB_lineChart = document.getElementById('PB_lineChart');
-
 let regularlineChart = new Chart(PB_lineChart, {
     type: 'line',
     data: {
@@ -644,9 +565,6 @@ let regularlineChart = new Chart(PB_lineChart, {
                 (chart_data.PB.PB_2021_2022.RecurrentPendingBills/1000000), 
                 (chart_data.PB.PB_2022_2023.RecurrentPendingBills/1000000)
             ],
-        //stepped: true,
-        //borderColor: chroma('hotpink').brighten(),
-        //backgroundColor: chroma('hotpink').brighten(3),
         borderWidth: 2,
 
       },{
@@ -660,9 +578,6 @@ let regularlineChart = new Chart(PB_lineChart, {
                 (chart_data.PB.PB_2021_2022.DevelopmentPendingBills/1000000), 
                 (chart_data.PB.PB_2022_2023.DevelopmentPendingBills/1000000)
             ],
-        //stepped: true,
-        //borderColor: chroma('red').brighten(),
-        //backgroundColor: chroma('red').brighten(3),
         borderWidth: 2,
 
       },{
@@ -676,9 +591,6 @@ let regularlineChart = new Chart(PB_lineChart, {
                 (chart_data.PB.PB_2021_2022.TotalPendingBills/1000000), 
                 (chart_data.PB.PB_2022_2023.TotalPendingBills/1000000)
             ],
-        //stepped: true,
-        //borderColor: chroma('green').brighten(),
-        //backgroundColor: chroma('green').brighten(3),
         borderWidth: 2,
 
       }]

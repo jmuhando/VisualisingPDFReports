@@ -1,30 +1,16 @@
 @CHARSET "UTF-8";
 #body {
-            padding: 0;
-            margin: 0;
-            width: 100%;
-        }
-        .map {
-            height:93%;
-            width: 45%;
-            position:absolute;
-            margin-top: 5px;
-            margin-left: 5px;
-
-        }
-
-/*.center  {
-  margin-top: 5px;
-  z-index: 1000;
-  font: 25px Arial, Helvetica, sans-serif;
-  width: fit-content;
-  margin-left: 20%;
-  background: #fff;
-  background-clip: padding-box;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 5px;
-  padding: 6px 10px 6px 6px;
-}*/
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.map {
+    height:93%;
+    width: 45%;
+    position:absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+}
 
 .center  {
     display: flex;
@@ -42,74 +28,38 @@
 }
 
 .center_text  {
-  font: 15px Arial, Helvetica, sans-serif;
+    font: 15px Arial, Helvetica, sans-serif;
 }
 
-  #sidebar {
+#sidebar {
     float: right;
     margin-left: 5px;
     margin-top: 5px;
     margin-right: 5px;
     width: 54%;
     height: 93%;
-    }
-
-/*  #sidebar_item {
-    }*/
-
-        .info {
-            padding: 6px 8px;
-/*            font: 14px/16px Arial, Helvetica, sans-serif;*/
-            background: white;
-/*            background: rgba(255,255,255,0.8);
-            background: #ebfffe;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-*/            border-radius: 5px;
-        }
-        .info h4 {
-            margin: 0 0 5px;
-            color: #777;
-        }
-    .legend {
-        line-height: 20px;
-        color: #555;
-    }
-    .legend i {
-        width: 20px;
-        height: 20px;
-        float: left;
-        margin-right: 8px;
-        opacity: 0.7;
-    }
-
-
-/*IMAGE OVERLAY*/
-.popup-overlay{
-    /*Hides pop-up when there is no "active" class*/
-    visibility:hidden;
-    position:absolute;
-    background:#ffffff;
-    top: 5%;
-    border:3px solid #666666;
-    width:50%;
-    height:90%; 
-    left: 25%;
-    z-index:10;
-}
-.popup-overlay.active{
-    /*displays pop-up when "active" class is present*/
-    visibility:visible;
-    text-align:center;
 }
 
-.popup-content {
-    /*Hides pop-up content when there is no "active" class */
-    visibility:hidden;
+.info {
+    padding: 6px 8px;
+    background: white;
+    border-radius: 5px;     
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+.legend {
+    line-height: 20px;
+    color: #555;
+}
+.legend i {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
 }
 
-.popup-content.active {
-    /*Shows pop-up content when "active" class is present */
-    visibility:visible;
-}
 
 
