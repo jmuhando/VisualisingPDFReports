@@ -193,8 +193,8 @@ let barChart = new Chart(ctx, {
                 chart_data.CBAEAR.CBAEAR_2021_2022.Rec_BudgetEstimates, 
                 chart_data.CBAEAR.CBAEAR_2022_2023.Rec_BudgetEstimates
             ],
-        borderColor: chroma('hotpink').brighten(),
-        backgroundColor: chroma('hotpink').brighten(2),
+        borderColor: chroma('#f98841').brighten(),
+        backgroundColor: chroma('#f98841').brighten(2),
         borderWidth: 1,
         stack: 'Stack 0',
       },{
@@ -223,8 +223,8 @@ let barChart = new Chart(ctx, {
                 chart_data.CBAEAR.CBAEAR_2021_2022.Rec_Expenditure, 
                 chart_data.CBAEAR.CBAEAR_2022_2023.Rec_Expenditure
             ],
-        borderColor: chroma('hotpink').brighten(),
-        backgroundColor: chroma('hotpink').brighten(2),
+        borderColor: chroma('#0571b0').brighten(),
+        backgroundColor: chroma('#0571b0').brighten(2),
         borderWidth: 1,
         stack: 'Stack 1',
       },{
@@ -238,8 +238,8 @@ let barChart = new Chart(ctx, {
                 chart_data.CBAEAR.CBAEAR_2021_2022.Dev_Expenditure, 
                 chart_data.CBAEAR.CBAEAR_2022_2023.Dev_Expenditure
             ],
-        borderColor: chroma('red').brighten(),
-        backgroundColor: chroma('red').brighten(2),
+        borderColor: chroma('#fa0080').brighten(),
+        backgroundColor: chroma('#fa0080').brighten(2),
         borderWidth: 1,
         stack: 'Stack 1',
       }]
@@ -248,7 +248,7 @@ let barChart = new Chart(ctx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Chart Title',
+                text: 'Comparing Estimates & Expenditure for Recurrent and Development budget categories',
                 },
             legend: {
                 position: 'bottom'
@@ -257,9 +257,19 @@ let barChart = new Chart(ctx, {
         scales: {
             x: {
               // beginAtZero: true,
-              stacked: true
+                title: {
+                    display: true,
+                    align: 'center',
+                    text: 'Financial Years',  
+                },
+                stacked: true
             },
             y: {
+                title: {
+                    display: true,
+                    align: 'center',
+                    text: 'Expenditure ("000)',  
+                },                
               // beginAtZero: true,
               stacked: true
             }
@@ -318,7 +328,7 @@ let radarChart = new Chart(RadarChart, {
         plugins: {
             title: {
                 display: true,
-                text: 'Chart Title',
+                text: 'Absorption Rate (%) ',
                 },
             legend: {
                 position: 'bottom'
@@ -387,12 +397,28 @@ let steppedlineChart = new Chart(lineChart, {
         plugins: {
             title: {
                 display: true,
-                text: 'Chart Title',
+                text: 'Trends in Expenditure ("000)',
                 },
             legend: {
                 position: 'bottom'
                 }
             },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    align: 'center',
+                    text: 'Financial Years',  
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    align: 'center',
+                    text: 'Expenditure ("000)',  
+                }
+            }
+        },
         elements: {
           line: {
             borderWidth: 3
@@ -431,7 +457,7 @@ let hrBarChart = new Chart(EEC_Bar, {
         plugins: {
             title: {
                 display: true,
-                text: 'EEC horizontal Chart Title',
+                text: 'Total Expenditure ("000)',
                 },
             legend: {
                 display: false,
@@ -440,12 +466,17 @@ let hrBarChart = new Chart(EEC_Bar, {
             },
         scales: {
             x: {
+                title: {
+                    display: true,
+                    align: 'center',
+                    text: 'Expenditure ("000)',  
+                }
             },
             y: {
                 title: {
                     display: true,
                     align: 'center',
-                    text: 'Y axis label',  
+                    text: 'Financial years',  
                 }
             }
         }
@@ -493,12 +524,28 @@ let comboChart = new Chart(LRC_comboChart, {
         plugins: {
             title: {
                 display: true,
-                text: 'Chart Title',
+                text: 'Trends in revenue collection against set targets ("000)',
                 },
             legend: {
                 position: 'bottom'
                 }
             },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    align: 'center',
+                    text: 'Financial Years',  
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    align: 'center',
+                    text: 'Expenditure ("000)',  
+                }
+            }
+        },
         elements: {
           line: {
             borderWidth: 3
@@ -533,7 +580,7 @@ let radarChartLRC = new Chart(LRC_radarChart, {
         plugins: {
             title: {
                 display: true,
-                text: 'Collection_vs_target',
+                text: 'Revenue Collection vs Set target (%)',
                 },
             legend: {
                 position: 'bottom'
@@ -605,6 +652,22 @@ let regularlineChart = new Chart(PB_lineChart, {
                 position: 'bottom'
                 }
             },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    align: 'center',
+                    text: 'Financial Years',  
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    align: 'center',
+                    text: 'Expenditure ("000)',  
+                }
+            }
+        },
         elements: {
           line: {
             borderWidth: 3
