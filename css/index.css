@@ -40,12 +40,14 @@ body {
     background-image: url('../img/county_comparison.png');
     background-repeat: no-repeat;
     background-position: center;
-    opacity: .3;
+    opacity: 1;
     border: 2px solid grey;
 }
 
 p {
     line-height: 30px;
+    position: absolute;
+    bottom: 40px;
 }
 
 .split-right {
@@ -53,19 +55,19 @@ p {
     background-image: url('../img/county_specific.png');
     background-repeat: no-repeat;
     background-position: center;
-    opacity: .3;
+    opacity: 1;
     border: 2px solid grey;
 }
 
 .split-left:hover {
     background-color: #cbeaeb;
-    opacity: .8;
+    opacity: .5;
     border: 2px solid rgb(146, 205, 223);
 }
 
 .split-right:hover {
     background-color: #cbeaeb;
-    opacity: .8;
+    opacity: .5;
     border: 2px solid rgb(146, 205, 223);
 }
 
