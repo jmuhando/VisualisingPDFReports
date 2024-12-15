@@ -112,7 +112,7 @@ test_legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 50, 60, 70, 80, 90, 100],
         labels = [];
-    div.innerHTML = '<h6>Test Absorption Rate % </h6>'
+    div.innerHTML = '<h6>Absorption Rate % </h6>'
     // loop through
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
